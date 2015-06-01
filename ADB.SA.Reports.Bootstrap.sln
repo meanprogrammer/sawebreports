@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADB.SA.Reports.Global", "AD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADB.SA.Reports.Configuration", "ADB.SA.Reports.Configuration\ADB.SA.Reports.Configuration.csproj", "{747EB7FC-22EB-4A7E-9816-30BB9B610278}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADB.SA.Reports.API", "ADB.SA.Reports.API\ADB.SA.Reports.API.csproj", "{845D536D-0917-4644-9B17-D42DA2404480}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{747EB7FC-22EB-4A7E-9816-30BB9B610278}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{747EB7FC-22EB-4A7E-9816-30BB9B610278}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{747EB7FC-22EB-4A7E-9816-30BB9B610278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{845D536D-0917-4644-9B17-D42DA2404480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{845D536D-0917-4644-9B17-D42DA2404480}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{845D536D-0917-4644-9B17-D42DA2404480}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{845D536D-0917-4644-9B17-D42DA2404480}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
