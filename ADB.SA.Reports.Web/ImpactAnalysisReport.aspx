@@ -440,7 +440,7 @@
                     <span id="direction" style="display:none;"></span>
                 </td>
                 <td align="center">
-                    <a id="homebutton" class="btn btn-success btn-md" ><span class="glyphicon glyphicon-home"></span> Return Home</a>
+                    <a id="homebutton" class="btn btn-success btn-sm" ><span class="glyphicon glyphicon-home"></span> Return Home</a>
                 </td>
             </tr>
             <tr>
@@ -494,9 +494,9 @@
                     </select>
                 </td>
                 <td>
-                    <a id="Search" class="btn btn-primary btn-md" ><span class="glyphicon glyphicon-search"></span> Search</a>
-                    <a id="Reset" class="btn btn-default btn-md" ><span class="glyphicon glyphicon-refresh"></span> Reset</a>
-                    <a id="Report" class="btn btn-default btn-md" ><span class="glyphicon glyphicon-file"></span> Report</a>
+                    <a id="Search" class="btn btn-primary btn-sm" ><span class="glyphicon glyphicon-search"></span> Search</a>
+                    <a id="Reset" class="btn btn-default btn-sm" ><span class="glyphicon glyphicon-refresh"></span> Reset</a>
+                    <a id="Report" class="btn btn-default btn-sm" ><span class="glyphicon glyphicon-file"></span> Report</a>
                 </td>
             </tr>
         </table>

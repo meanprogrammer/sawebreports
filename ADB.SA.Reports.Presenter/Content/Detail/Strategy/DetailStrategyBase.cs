@@ -13,7 +13,7 @@ namespace ADB.SA.Reports.Presenter.Content
 {
     public abstract class DetailStrategyBase
     {
-        public abstract string BuildDetail(EntityDTO dto);
+        public abstract object BuildDetail(EntityDTO dto);
 
         protected virtual string BuildType(int type, int colspan)
         {
@@ -26,17 +26,15 @@ namespace ADB.SA.Reports.Presenter.Content
         }
 
 
-        protected virtual void BuildDescription(HtmlTable table, EntityDTO dto)
+        protected virtual string BuildDescription(EntityDTO dto)
         {
-            table.AddCell(GlobalStringResource.Description);
-            table.AddCell(dto.RenderHTML(GlobalStringResource.Description, RenderOption.Break));
+            return dto.RenderHTML(GlobalStringResource.Description, RenderOption.Break);
         }
 
-        protected virtual void BuildReferencedDocuments(HtmlTable table, EntityDTO dto)
+        protected virtual string BuildReferencedDocuments(EntityDTO dto)
         {
-            table.AddCell(GlobalStringResource.ReferenceDocuments);
             string link = dto.RenderHTML(GlobalStringResource.ReferenceDocuments, RenderOption.NewLine);
-            table.AddCell(dto.RenderMultipleLinks(link, true));
+            return dto.RenderMultipleLinks(link, true);
         }
 
         protected virtual string BuildReturnLink(int id)

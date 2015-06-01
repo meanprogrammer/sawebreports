@@ -12,12 +12,13 @@ namespace ADB.SA.Reports.Presenter.Content
 {
     public class OrganizationUnitDetailStrategy : DetailStrategyBase
     {
-        public override string BuildDetail(EntityDTO dto)
+        public override object BuildDetail(EntityDTO dto)
         {
-            HtmlTable t = new HtmlTable(2, 0, "grid");
-            BuildDescription(t, dto);
-            BuildReferencedDocuments(t, dto);
-            return t.EndHtmlTable();
+            GenericDetailDTO detail = new GenericDetailDTO();
+            detail.Title = dto.Name;
+            detail.Description = BuildDescription(dto);
+            detail.ReferencedDocuments = BuildReferencedDocuments(dto);
+            return detail;
         }
     }
 }

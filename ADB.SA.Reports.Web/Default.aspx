@@ -66,77 +66,6 @@
 
                     $('#content').html(content);
 
-//                    $("#editorta").htmlarea({
-//                        toolbar: [
-//                                "bold", "italic", "underline"
-//                            ]
-//                    });
-
-                    //AJAX UPLOAD
-//                    var ajxopts = {
-//                        beforeSubmit: beforesubmit,
-//                        success: onsubmitsuccess,
-//                        url: 'Ajax/commentajax.ashx',
-//                        type: 'POST'
-//                    };
-
-//                    $('#commentform').submit(function() {
-//                        alert('before22submit');
-//                        $('#commentform').ajaxSubmit(ajxopts);
-//                        return false;
-//                    });
-
-
-
-
-//                    $('#savecomment').click(function() {
-//                        var valid = true;
-//                        clearvalidation();
-//                        var e1 = '<strong style="color:#FF0000;">*</strong>'
-//                        if ($('#emailadd').val() == '') {
-//                            $('#emailspan').html(e1);
-//                            valid = false;
-//                        }
-//                        if ($('#editorta').val().length <= 0) {
-//                            $('#commentspan').html(e1);
-//                            valid = false;
-//                        }
-
-//                        if (!valid) return;
-//                        alert('valid');
-//                        $('#commentform').submit();
-
-                        //                            $.each(filearray, function(k, v) {
-                        //                                formdata.append(v.name, v.file);
-                        //                            });
-
-                        //                            formdata.append('email', $('#emailadd').val());
-                        //                            formdata.append('comment', $('#summernote').code());
-                        //                            formdata.append('id', $('#reportId').val());
-                        //                            formdata.append('action', 'save');
-
-                        //                            if (formdata) {
-                        //                                $.ajax({
-                        //                                    url: "Ajax/commentajax.ashx",
-                        //                                    type: "POST",
-                        //                                    data: formdata,
-                        //                                    processData: false,
-                        //                                    contentType: false,
-                        //                                    success: function(res) {
-                        //                                        filearray = [];
-                        //                                        formdata = new FormData();
-                        //                                        getallcomments(0);
-                        //                                        clearcommentscontrol();
-                        //                                    }
-                        //                                });
-                        //                            }
-                        //                        });
-                    //});
-                    //AJAX UPLOAD
-//                    if ($('#comments-container').length > 0) {
-//                        getallcomments(0);
-//                    }
-
                     if ($("#tabs")) {
                         $("#tabs").tabs();
                     }
@@ -155,6 +84,7 @@
                     })
 
                     $('#content-tab a:first').tab('show');
+                    $('[data-toggle="tooltip"]').tooltip()
                 }
 
             });
@@ -162,103 +92,11 @@
 
         }
 
-//        function onsubmitsuccess(responseText, statusText, xhr, $form) {
-//            getallcomments(0);
-//            clearcommentscontrol();
-//        }
-
         function downloadattachment(path) {
             window.open("AttachmentDownload.aspx?path=" + path, "_blank", "width=50px,height=50px", false);
-        }
+        }    
 
-//        function beforesubmit(formData, jqForm, options) {
-//            formData.push({ name: 'email', value: $('#emailadd').val() });
-//            formData.push({ name: 'comment',value: $('#editorta').val() });
-//            formData.push({ name: 'id',value: $('#reportId').val() });
-//            formData.push({ name: 'action', value: 'save' });
-//            return true; 
-//        }
 
-//        function existinarray(array, name) {
-//            for (ctr = 0; ctr < array.length; ctr++) {
-//                if (array[ctr].name == name) {
-//                    return true;
-//                }
-//            }
-//            return false;
-//        }
-
-//        function appendtoattachement(filename) {
-//            var id = filename;
-//            if (filename.indexOf(".") > 0) {
-//                id = filename.replace(".", "-");
-//            }
-//            var html = '';
-//            html = '<div id="'+ id +'" class="alert alert-success alert-dismissable att-file">' +
-//                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-//                    filename +
-//                    '</div>';
-//            $('#attachment-container').append(html);
-//            
-//            if (filearray.length > 0) {
-//                $('#attachment-container').removeClass('hide');
-//                $('#attachment-container').addClass('show');
-//            } 
-            
-
-            //handler of remove attached file
-//            $('#' + id).bind('closed.bs.alert', function() {
-//                for (ctr = 0; ctr < filearray.length; ctr++) {
-//                    if (filearray[ctr].name == filename) {
-//                        filearray.splice(ctr, 1);
-//                    }
-//                }
-//             
-//                if (filearray.length == 0) {
-//                    $('#attachment-container').removeClass('show');
-//                    $('#attachment-container').addClass('hide');
-//                }
-//            });
-            //handler of remove attached file
-        
-
-//        function getallcomments(page) {
-//            var id = $('#reportId').val();
-//            if (page == '' || page == undefined) {
-//                page = 0;
-//            }
-
-//            $.ajax({
-//                type: "POST",
-//                url: "Ajax/commentajax.ashx",
-//                data: { "id": id, "page": page, "action": "getall" },
-//                success: function(result) {
-//                    var obj = JSON.parse(result);
-//                    if (obj != null) {
-//                        var source = $('#comments-content').html();
-//                        var template = Handlebars.compile(source);
-//                        content = template(obj);
-//                        $('#comments-container').html(content);
-//                    }
-//                    
-//                },
-//                error: function() {
-//                    alert('error retrieving comments');
-//                }
-
-//            });
-//        }
-
-//        function clearcommentscontrol() {
-//            $('#summernote').code('');
-//            $('#emailadd').val('');
-//            $('#attachment-container').html('');
-//        }
-
-//        function clearvalidation() {
-//            $('#emailspan').html('');
-//            $('#commentspan').html('');
-//        }
     </script>
     <script id="generic-content" type="text/x-handlebars-template">
         <ul class="nav nav-pills content-tab" id="content-tab">
@@ -766,17 +604,16 @@
         <div class="tab-content top-margin-10">
           <!-- Diagram -->
           <div class="tab-pane" id="diagram">
-              <div class="row" style="margin:10px;">
-                    <div class="col-md-8">
-                        <div class="alert alert-info">
-                            To navigate to the related process and sub-process of this diagram, use the menu on the right.
-                            <br />To navigate related informations, select the tabs above.
-                        </div>
+              <div class="row" style="margin-right:10px;">
+                    <div class="col-md-8">             
+                        &nbsp;
                     </div>    
                     <div class="col-md-4" style="text-align:right;">       
+                    <button title="" data-placement="left" data-toggle="tooltip" class="btn btn-sm btn-default" type="button" data-original-title="To navigate to the related process and sub-process of this diagram, use the menu on the right. To navigate related informations, select the tabs above."><span class="glyphicon glyphicon-info-sign" style="font-size:18px;"></span></button>
                                             <div class="btn-group">
+                                            
                           <button type="button" style="width:120px;" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                            Process&nbsp; <span class="caret"></span>
+                           <span class="glyphicon glyphicon-tasks"></span>&nbsp; Process&nbsp; <span class="caret"></span>
                           </button>
                           <ul class="dropdown-menu quicklink-override navbar-right" role="menu">
                             {{#each Diagram.RelatedProcess}}
@@ -785,8 +622,8 @@
                           </ul>
                         </div>
                         <div class="btn-group">
-                          <button type="button" style="width:120px;" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                            Sub-Process&nbsp; <span class="caret"></span>
+                          <button type="button" style="width:140px;" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                           <span class="glyphicon glyphicon-indent-left"></span>&nbsp; Sub-Process&nbsp; <span class="caret"></span>
                           </button>
                           <ul class="dropdown-menu quicklink-override" role="menu">
                             {{#each Diagram.RelatedSubProcess}}

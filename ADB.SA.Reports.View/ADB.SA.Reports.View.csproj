@@ -10,15 +10,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ADB.SA.Reports.View</RootNamespace>
     <AssemblyName>ADB.SA.Reports.View</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ADB.SA.Reports.Entities\ADB.SA.Reports.Entities.csproj">
-      <Project>{49b8dda3-7903-4c10-b678-7b90d7936c48}</Project>
+      <Project>{49B8DDA3-7903-4C10-B678-7B90D7936C48}</Project>
       <Name>ADB.SA.Reports.Entities</Name>
     </ProjectReference>
   </ItemGroup>

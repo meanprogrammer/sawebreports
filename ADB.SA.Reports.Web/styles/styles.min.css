@@ -63,7 +63,7 @@ div.square:hover{color:#000;font-weight:bold;background-color:#555}
 .content-holder{border:solid 1px #AAA!important}
 .entity-title{height:30px;width:100%;position:relative;float:left;background-color:#f1f1f1;background-repeat:repeat-x}
 #extra-menu-right{width:20%;float:right;text-align:right;padding-right:10px;padding-top:5px}
-#caption-left h4{color:#4e4e4e;padding-left:15px;margin-top:5px;vertical-align:middle}
+#caption-left h4{color:#4e4e4e;padding-left:15px;margin-top:10px;vertical-align:middle}
 #extra-menu-right a{vertical-align:middle;color:#517704;font-size:12px}
 #caption-container{width:100%;min-height:30px;max-height:60px;height:30px;background-color:#f1f1f1}
 .search-left{background-image:url('../images/search_01.png');height:25px;width:12px;background-repeat:no-repeat}
@@ -102,6 +102,8 @@ ul.dropdown ul li a{border-right:0;width:100%;display:inline-block;text-align:le
 .strategy-margin{top:40px}
 .type-column,.agenda-column{padding:4px!important}
 .business-policy-table{margin-left:-1px;margin-top:-1px;margin-bottom:-1px}
+.business-policy-table tr td:first-child{color:Red}
+.rule-table tr td:first-child{color:Red!important}
 .rule-table{margin-bottom:-2px;margin-left:-5px;margin-top:-4px}
 .process-table{margin-bottom:-2px;margin-left:-5px;margin-top:-4px}
 .sp-table{margin-bottom:-2px;margin-left:-5px;margin-top:-4px}
@@ -115,8 +117,8 @@ ul.dropdown ul li a{border-right:0;width:100%;display:inline-block;text-align:le
 .width-200{width:200px}
 .width-250{width:250px}
 .width-300{width:300px}
-#float-header{text-indent:5px;background-color:#6495ED;width:100%}
-#ia-holder{overflow:auto;overflow-x:hidden;overflow-y:scroll;position:relative;height:600px}
+#float-header{text-indent:5px;background-color:#428bca;color:#fff;width:100%}
+#ia-holder{overflow:auto;overflow-x:hidden;overflow-y:scroll;position:relative;height:550px;border-bottom:solid 2px #ddd}
 .comment-item{font-size:11px;border:solid 1px Gray;padding:8px;margin:5px;background-color:#DDE6EC}
 .clearfix:after{clear:both;display:block;content:" ";height:0;visibility:hidden}
 .clearfix{display:inline-block}
@@ -154,7 +156,7 @@ li.editor-0{width:88px!important}
 .dropdown-menu-override{font-size:11px!important;text-align:left!important;margin-top:40px!important;margin-left:-150px!important}
 .breadcrumb-active{color:#517704!important}
 .no-margin-bottom ol{margin-bottom:0!important}
-.alert-override{margin:10px!important}
+.alert-override{margin:5px 10px!important}
 .diagram-image{margin:0 auto}
 .quicklink-override{left:auto!important;right:0!important;text-align:left;font-size:12px!important}
 #content-tab>li.active>a,#content-tab>li.active>a:hover,#content-tab>li.active>a:focus{color:#FFF}
@@ -175,3 +177,23 @@ li.editor-0{width:88px!important}
 .jHtmlArea{width:600px!important;height:400px!important}
 .jHtmlArea iframe{width:600px!important;height:400px!important}
 .ToolBar{width:100%!important}
+.sproc-table>tbody>tr>td:first-child{border-right:solid 1px #ddd!important}
+.td-nested{padding:0!important}
+.bp-table,.proc-table,.br-table{border-width:0!important}
+.table-bottom-override{margin-bottom:0!important}
+.main-table>tbody>tr>td:first-child{border-right:solid 1px #ddd!important;border-top:solid 1px #ddd}
+.bp-table>tbody>tr>td:first-child{border-right:solid 1px #ddd!important;border-top:solid 1px #ddd}
+.br-table>tbody>tr>td:first-child{border-right:solid 1px #ddd!important;border-top:solid 1px #ddd}
+.proc-table>tbody>tr>td{border-right:solid 1px #ddd!important;border-top:solid 1px #ddd}
+.sproc-table>tbody>tr>td:first-child{border-right:solid 1px #ddd!important;border-top:solid 1px #ddd}
+.mod-table>tbody>tr>td:last-child{border-top:solid 0 Red}
+.sproc-last-row{border-bottom:Solid 0 Blue!important}
+.main-table tr td table:first-child{margin-top:-1px}
+.mod-table{margin-top:-1px!important}
+.tooltip.left{background-color:transparent!important}
+.tooltip.left .tooltip-arrow{border-left-color:#ccc!important}
+.tooltip-inner{background-color:#fff!important;border:1px solid #ccc!important;color:#000!important;padding:10px!important;max-width:300px!important}
+.ia-table-override{margin-bottom:0!important}
+.mod-list{list-style:outside none none;padding-left:0;margin-bottom:0!important}
+.mod-list li{border-bottom:1px solid #ddd;padding:10px}
+.mod-list li:last-child{border-bottom-width:0!important}

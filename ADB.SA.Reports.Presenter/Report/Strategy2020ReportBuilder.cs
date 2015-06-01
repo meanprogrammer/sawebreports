@@ -174,9 +174,9 @@ namespace ADB.SA.Reports.Presenter.Report
             string css = string.Empty;
 
             if (counter % 2 == 0)
-                css = "#CDD3DA";
+                css = "#f9f9f9";
             else
-                css = "#F7F6F3";
+                css = "";
 
             return css;
         }
@@ -185,6 +185,7 @@ namespace ADB.SA.Reports.Presenter.Report
         {
             Document document = new Document();
             document.SetPageSize(iTextSharp.text.PageSize.A4.Rotate());
+            document.SetMargins(50, 50, 10, 40);
             var output = new MemoryStream();
             var writer = PdfWriter.GetInstance(document, output);
             writer.PageEvent = new ImpactAnalysisHeaderHandler();
@@ -221,6 +222,14 @@ namespace ADB.SA.Reports.Presenter.Report
             PdfPTable table = new PdfPTable(2);
             table.SetWidths(new float[] { 25,75 });
             table.WidthPercentage = 100;
+
+            table.AddCell(new PdfPCell() {
+                Phrase = new Phrase(GlobalStringResource.ForOfficialUseOnly, FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 20)),
+                Colspan = 2,
+                Border = 0,
+                PaddingTop = 70
+            });
+
             table.AddCell(
                 new PdfPCell()
                 {
@@ -228,7 +237,6 @@ namespace ADB.SA.Reports.Presenter.Report
                     Colspan = 2,
                     Border = 0,
                     PaddingLeft = 0,
-                    PaddingTop = 70,
                     PaddingBottom = 150
                 });
 
@@ -239,49 +247,49 @@ namespace ADB.SA.Reports.Presenter.Report
                 PdfPHelper.CreatePaddingCell()
             );
              table.AddCell(
-                PdfPHelper.CreatePlainCell("Agenda")
+                PdfPHelper.CreatePlainCell("Agenda", BaseColor.LIGHT_GRAY)
                 );
             table.AddCell(
                 PdfPHelper.CreatePlainCell(this.filter.AgendaFilterText)
                 );
 
             table.AddCell(
-                PdfPHelper.CreatePlainCell("Business Policy")
+                PdfPHelper.CreatePlainCell("Business Policy", BaseColor.LIGHT_GRAY)
                 );
             table.AddCell(
                 PdfPHelper.CreatePlainCell(this.filter.PolicyFilterText)
                 );
 
             table.AddCell(
-                PdfPHelper.CreatePlainCell("Business Rule")
+                PdfPHelper.CreatePlainCell("Business Rule", BaseColor.LIGHT_GRAY)
             );
             table.AddCell(
                 PdfPHelper.CreatePlainCell(this.filter.RuleFilterText)
                 );
 
             table.AddCell(
-                PdfPHelper.CreatePlainCell("Process")
+                PdfPHelper.CreatePlainCell("Process", BaseColor.LIGHT_GRAY)
             );
             table.AddCell(
                 PdfPHelper.CreatePlainCell(this.filter.ProcessFilterText)
             );
 
             table.AddCell(
-                PdfPHelper.CreatePlainCell("Application")
+                PdfPHelper.CreatePlainCell("Application", BaseColor.LIGHT_GRAY)
             );
             table.AddCell(
                 PdfPHelper.CreatePlainCell(this.filter.ApplicationFilterText)
             );
 
             table.AddCell(
-                PdfPHelper.CreatePlainCell("Sub-Process")
+                PdfPHelper.CreatePlainCell("Sub-Process", BaseColor.LIGHT_GRAY)
             );
             table.AddCell(
                 PdfPHelper.CreatePlainCell(this.filter.SubProcessFilterText)
             );
 
             table.AddCell(
-                PdfPHelper.CreatePlainCell("Module")
+                PdfPHelper.CreatePlainCell("Module", BaseColor.LIGHT_GRAY)
             );
             table.AddCell(
                 PdfPHelper.CreatePlainCell(this.filter.ModuleFilterText)
@@ -371,6 +379,14 @@ namespace ADB.SA.Reports.Presenter.Report
                 );
         }
 
+        public static PdfPCell CreatePlainCell(string text, BaseColor color)
+        {
+            PdfPCell cell = new PdfPCell();
+            cell.BackgroundColor = color;
+            cell.Phrase = new Phrase(text);
+            return cell;
+        }
+
         public static PdfPCell CreatePaddingCell()
         {
             return new PdfPCell(
@@ -396,6 +412,37 @@ namespace ADB.SA.Reports.Presenter.Report
                 return;
             }
 
+            iTextSharp.text.Image header = iTextSharp.text.Image.GetInstance(PathResolver.MapPath("images/ADB_Logo.gif"));
+
+            PdfPTable tableHeader = new PdfPTable(2);
+            tableHeader.WidthPercentage = 100;
+
+            PdfPCell imageHeaderCell = new PdfPCell(header);
+            imageHeaderCell.Rowspan = 2;
+            imageHeaderCell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
+            imageHeaderCell.Border = 0;
+            imageHeaderCell.PaddingBottom = 3;
+            tableHeader.AddCell(imageHeaderCell);
+
+            iTextSharp.text.Font helvetica20 = FontFactory.GetFont(FontFactory.HELVETICA, 16);
+            PdfPCell typeNameCell = new PdfPCell(new Phrase(""));
+            typeNameCell.HorizontalAlignment = 2;
+            typeNameCell.Border = 0;
+            tableHeader.AddCell(typeNameCell);
+
+            PdfPCell adbCell = new PdfPCell(new Phrase(GlobalStringResource.ADB, helvetica20));
+            adbCell.HorizontalAlignment = 2;
+            adbCell.Border = 0;
+            tableHeader.AddCell(adbCell);
+
+            PdfPCell lineCell = new PdfPCell();
+            lineCell.Colspan = 2;
+            lineCell.Border = 1;
+            lineCell.PaddingBottom = 5;
+            tableHeader.AddCell(lineCell);
+
+            document.Add(tableHeader);
+
             PdfPTable table = new PdfPTable(7);
             table.SplitLate = false;
             table.KeepTogether = false;
@@ -414,22 +461,24 @@ namespace ADB.SA.Reports.Presenter.Report
 
             System.Drawing.Color c = ColorTranslator.FromHtml("#6495ED");
             BaseColor realColor = new BaseColor(c);
+            iTextSharp.text.Font font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.WHITE);
+
             //table.AddCell(new PdfPCell(
             //    new Phrase("Type")) { BackgroundColor = realColor, Padding = 5 });
             table.AddCell(new PdfPCell(
-                new Phrase("Agenda")) { BackgroundColor = realColor, Padding = 5 });
+                new Phrase("Agenda", font)) { BackgroundColor = realColor, Padding = 5 });
             table.AddCell(new PdfPCell(
-                new Phrase("Business Policy")) { BackgroundColor = realColor, Padding = 5 });
+                new Phrase("Business Policy", font)) { BackgroundColor = realColor, Padding = 5 });
             table.AddCell(new PdfPCell(
-                new Phrase("Business Rule")) { BackgroundColor = realColor, Padding = 5 });
+                new Phrase("Business Rule", font)) { BackgroundColor = realColor, Padding = 5 });
             table.AddCell(new PdfPCell(
-                new Phrase("Process")) { BackgroundColor = realColor, Padding = 5 });
+                new Phrase("Process", font)) { BackgroundColor = realColor, Padding = 5 });
             table.AddCell(new PdfPCell(
-                new Phrase("Application")) { BackgroundColor = realColor, Padding = 5 });
+                new Phrase("Application", font)) { BackgroundColor = realColor, Padding = 5 });
             table.AddCell(new PdfPCell(
-                new Phrase("Sub-Process")) { BackgroundColor = realColor, Padding = 5 });
+                new Phrase("Sub-Process", font)) { BackgroundColor = realColor, Padding = 5 });
             table.AddCell(new PdfPCell(
-                new Phrase("Module")) { BackgroundColor = realColor, Padding = 5 });
+                new Phrase("Module", font)) { BackgroundColor = realColor, Padding = 5 });
 
             document.Add(table);
         }

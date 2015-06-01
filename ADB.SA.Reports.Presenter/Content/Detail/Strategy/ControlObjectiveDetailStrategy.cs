@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ADB.SA.Reports.Utilities.HtmlHelper;
+using ADB.SA.Reports.Entities.DTO;
 
 namespace ADB.SA.Reports.Presenter.Content
 {
     public class ControlObjectiveDetailStrategy : DetailStrategyBase
     {
-        public override string BuildDetail(ADB.SA.Reports.Entities.DTO.EntityDTO dto)
+        public override object BuildDetail(ADB.SA.Reports.Entities.DTO.EntityDTO dto)
         {
-            HtmlTable t = new HtmlTable(2, 0, "grid");
-            BuildDescription(t, dto);
-            BuildReferencedDocuments(t, dto);
-            return t.EndHtmlTable();
+            GenericDetailDTO detail = new GenericDetailDTO();
+            detail.Description = BuildDescription(dto);
+            detail.ReferencedDocuments = BuildReferencedDocuments(dto);
+            return detail;
         }
     }
 }

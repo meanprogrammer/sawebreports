@@ -12,20 +12,13 @@ namespace ADB.SA.Reports.Presenter.Content
 {
     public class PersonDetailStrategy : DetailStrategyBase
     {
-        public override string BuildDetail(EntityDTO dto)
+        public override object BuildDetail(EntityDTO dto)
         {
-
-            HtmlTable t = new HtmlTable(2, 0, "grid");
-
-            //t.AppendRowHtml(base.BuildType(dto.Type, 1));
-
-            t.AddCell(GlobalStringResource.Email);
-            t.AddCell(dto.RenderHTML(GlobalStringResource.Email, RenderOption.Break));
-
-            t.AddCell(GlobalStringResource.Contact);
-            t.AddCell(dto.RenderHTML(GlobalStringResource.Contact, RenderOption.Break));
-
-            return t.EndHtmlTable();
+            PersonDetailDTO detail = new PersonDetailDTO();
+            detail.Title = dto.Name;
+            detail.Email = dto.RenderHTML(GlobalStringResource.Email, RenderOption.Break);
+            detail.Contact = dto.RenderHTML(GlobalStringResource.Contact, RenderOption.Break);
+            return detail;
         }
     }
 }

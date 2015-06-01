@@ -8,9 +8,9 @@ using ADB.SA.Reports.Global;
 
 namespace ADB.SA.Reports.Presenter.Content
 {
-    public class DetailBuilder
+    public class DetailBuilder2
     {
-        public static string BuildDetail(EntityDTO dto)
+        public static object BuildDetail(EntityDTO dto)
         {
             DetailContext context = null;
             switch (dto.Type)

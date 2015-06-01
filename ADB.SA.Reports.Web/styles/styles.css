@@ -545,7 +545,7 @@ div.square:hover
 {
     color: #4e4e4e;
     padding-left: 15px;
-    margin-top: 5px;
+    margin-top: 10px;
     vertical-align: middle;
 }
 
@@ -824,12 +824,25 @@ ul.dropdown ul li a
     margin-bottom: -1px;
 }
 
+
+.business-policy-table tr td:first-child 
+ {
+     color:Red;
+}
+
+.rule-table tr td:first-child 
+ {
+     color:Red !important;
+}
+
 .rule-table
 {
     margin-bottom: -2px;
     margin-left: -5px;
     margin-top: -4px;
 }
+
+
 
 .process-table
 {
@@ -904,7 +917,8 @@ ul.dropdown ul li a
 #float-header
 {
     text-indent: 5px;
-    background-color: #6495ED;
+    background-color: #428bca;
+    color:#fff;
     width: 100%;
 }
 
@@ -914,7 +928,8 @@ ul.dropdown ul li a
     overflow-x: hidden;
     overflow-y: scroll;
     position: relative;
-    height: 600px;
+    height: 550px;
+    border-bottom:solid 2px #ddd;
 }
 
 .comment-item
@@ -1104,7 +1119,7 @@ li.editor-0 {
 .dropdown-menu-override { font-size:11px !important; text-align:left !important;margin-top:40px !important;margin-left:-150px !important; }
 .breadcrumb-active { color: #517704 !important; }
 .no-margin-bottom ol { margin-bottom:0px !important; }
-.alert-override { margin:10px !important; }
+.alert-override { margin:5px 10px !important; }
 .diagram-image { margin:0 auto; }
 .quicklink-override 
 { 
@@ -1139,3 +1154,91 @@ li.editor-0 {
 .jHtmlArea { width: 600px !important; height: 400px !important; }
 .jHtmlArea iframe { width: 600px !important; height: 400px !important; }
 .ToolBar { width: 100% !important; }
+
+
+.bp-table,.br-table, .proc-table {  }
+.mod-table, .sproc-table {  }
+.sproc-table > tbody > tr > td:first-child { border-right: solid 1px #ddd !important; }
+
+
+.td-nested 
+{
+    padding:0 !important;
+}
+
+.bp-table, .proc-table, .br-table
+{
+    border-width:0 !important;
+}
+
+.table-bottom-override { margin-bottom: 0px !important; }
+
+.main-table > tbody > tr > td:first-child { border-right:solid 1px #ddd !important; border-top:solid 1px #ddd; }
+.bp-table > tbody > tr > td:first-child { border-right:solid 1px #ddd !important; border-top:solid 1px #ddd; }
+.br-table > tbody > tr > td:first-child { border-right:solid 1px #ddd !important; border-top:solid 1px #ddd; }
+.proc-table > tbody > tr > td { border-right:solid 1px #ddd !important; border-top:solid 1px #ddd; }
+.sproc-table > tbody > tr > td:first-child { border-right:solid 1px #ddd !important; border-top:solid 1px #ddd; }
+.mod-table > tbody > tr > td:last-child { border-top:solid 0px Red; }
+.sproc-last-row { border-bottom:Solid 0px Blue !important; }
+
+.main-table  tr  td table:first-child { /*border-top:solid 0px red !important;*/ margin-top: -1px; }
+
+/*Removes the annoying top border*/
+.main-table > thead > tr > th, 
+.main-table > tbody > tr > th, 
+.main-table > tfoot > tr > th, 
+.main-table > thead > tr > td, 
+.main-table > tbody > tr > td, 
+.main-table > tfoot > tr > td,/*next*/
+.bp-table > thead > tr > th, 
+.bp-table > tbody > tr > th, 
+.bp-table > tfoot > tr > th, 
+.bp-table > thead > tr > td, 
+.bp-table > tbody > tr > td, 
+.bp-table > tfoot > tr > td, /*next*/
+.br-table > thead > tr > th, 
+.br-table > tbody > tr > th, 
+.br-table > tfoot > tr > th, 
+.br-table > thead > tr > td, 
+.br-table > tbody > tr > td, 
+.br-table > tfoot > tr > td, /*next*/
+.proc-table > thead > tr > th, 
+.proc-table > tbody > tr > th, 
+.proc-table > tfoot > tr > th, 
+.proc-table > thead > tr > td, 
+.proc-table > tbody > tr > td, 
+.proc-table > tfoot > tr > td, /*next*/
+.sproc-table > thead > tr > th, 
+.sproc-table > tbody > tr > th, 
+.sproc-table > tfoot > tr > th, 
+.sproc-table > thead > tr > td, 
+.sproc-table > tbody > tr > td, 
+.sproc-table > tfoot > tr > td /*next
+.mod-table > tbody > tr > td:first-child*/
+{ /*border-top-width: 0px !important;*/ }
+
+.mod-table { margin-top:-1px !important;}
+.tooltip.left {
+    background-color: transparent !important;
+}
+
+.tooltip.left .tooltip-arrow 
+{
+    border-left-color: #ccc !important;
+}
+
+.tooltip-inner {
+    background-color: #fff !important;
+    border: 1px solid #ccc !important;
+    color:#000 !important;
+    padding:10px !important;
+    max-width: 300px !important;
+}
+
+.ia-table-override { margin-bottom: 0 !important; }
+
+.mod-list { list-style: outside none none;
+    padding-left: 0; margin-bottom: 0 !important; }
+.mod-list li { border-bottom: 1px solid #ddd;
+    padding: 10px; }
+.mod-list li:last-child { border-bottom-width:0 !important; }

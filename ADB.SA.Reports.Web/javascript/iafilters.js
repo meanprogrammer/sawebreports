@@ -106,6 +106,11 @@ function queryreport() {
         },
         success: function(result) {
             $('#ia-content').html(result);
+
+            var topheight = $('#ia-header').height() + $('#orange-line').height() + $('#filters').height() + $('#float-header').height();
+            var remaining = $(document).height() - topheight;
+            $('#ia-holder').height(remaining - 20);
+
             toggleenabledropdowns(true);
         }
     });

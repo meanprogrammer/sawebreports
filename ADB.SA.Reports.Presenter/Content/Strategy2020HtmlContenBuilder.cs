@@ -19,16 +19,16 @@ namespace ADB.SA.Reports.Presenter.Content
 
             html.Append("<div id='float-header'>");
             html.Append("<table border='0'>");
-            html.Append("<tr><td colspan='100'><strong>Strategy 2020 and its elements</strong></td></tr>");
+            html.Append("<tr><td colspan='100'><h5><strong>Strategy 2020 and its elements</strong></h5></td></tr>");
             html.Append("<tr>");
             html.Append("<td class='strategy-table-header width-100'>Agenda</td>");
-            html.Append("<td><table border='0' width='100%'><tr><td class='strategy-table-header width-150'>Business Policy</td><td class='strategy-table-header width-200'>Business Rule</td><td class='strategy-table-header width-100'>Process</td><td class='strategy-table-header width-150' style='text-indent:5px;'>Application</td><td class='strategy-table-header width-200' style='text-indent:5px;'>Sub-Process</td><td class='strategy-table-header width-250' style='text-indent:5px;'>Module</td></tr></table></td>");
+            html.Append("<td><table border='0' width='100%'><tr><td class='strategy-table-header width-150'>Business Policy</td><td class='strategy-table-header width-200'>Business Rule</td><td class='strategy-table-header width-200'>Process</td><td class='strategy-table-header width-150' style='text-indent:5px;'>Application</td><td class='strategy-table-header width-200' style='text-indent:5px;'>Sub-Process</td><td class='strategy-table-header' style='text-indent:5px;'>Module</td></tr></table></td>");
             html.Append("</tr>");
             html.Append("</table>");
             html.Append("</div>");
 
             html.Append("<div id='ia-holder'>");
-            html.Append("<table border=0 class='strategy-table'>");
+            html.Append("<table class='table table-striped main-table' width='100%' height='100%'>");
 
             if (strategyList.Count > 0)
             {
@@ -37,7 +37,7 @@ namespace ADB.SA.Reports.Presenter.Content
                 {
                     StringBuilder policies = new StringBuilder();
 
-                    policies.Append("<table border=0 class='strategy-table business-policy-table'>");
+                    policies.Append("<table  class='table table-striped ia-table-override bp-table' width='100%' height='100%'>");
                     int ctr1 = 0;
                     foreach (var ip in item.Policies)
                     {
@@ -45,8 +45,8 @@ namespace ADB.SA.Reports.Presenter.Content
                         policies.AppendFormat("<td class='{0} width-150'>{1}</td>", DetermineCSS(ctr1), ip.BusinessPolicyName);
 
                         ctr1++;
-                        policies.Append("<td>");
-                        policies.Append("<table border=0 class='strategy-table rule-table'>");
+                        policies.Append("<td class='td-nested'>");
+                        policies.Append("<table class='table table-striped ia-table-override br-table'  width='100%'  height='100%'>");
 
                         int ctr2 = 0;
                         foreach (var r in ip.Rules)
@@ -59,9 +59,9 @@ namespace ADB.SA.Reports.Presenter.Content
                                 r.BusinessRuleName));
 
                             ctr2++;
-                            policies.Append("<td>");
+                            policies.Append("<td class='td-nested'>");
 
-                            policies.Append("<table border=0 class='strategy-table process-table'>");
+                            policies.Append("<table class='table table-striped ia-table-override proc-table' width='100%' height='100%'>");
                             int ctr3 = 0;
                             foreach (var p in r.Processes)
                             {
@@ -72,63 +72,93 @@ namespace ADB.SA.Reports.Presenter.Content
                                 }
                                 else
                                 {
-                                    policies.AppendFormat("<td class='{0} width-100'>{1}</td>", DetermineCSS(ctr3), p.ProcessName);
+                                    policies.AppendFormat("<td class='{0} width-200'>{1}</td>", DetermineCSS(ctr3), p.ProcessName);
                                 }
 
                                 ctr3++;
 
                                 if (p.Application.Count == 1)
                                 {
-                                    policies.AppendFormat(
-                                        "<td class='width-150'>{0}</td>",
-                                        p.Application.FirstOrDefault().ApplicationName
-                                        );
+                                    policies.Append(
+                                        "<td class='width-150'>");
+                                    policies.AppendFormat("<ul class='mod-list'><li>{0}</li></ul>",
+                                        p.Application.FirstOrDefault().ApplicationName);
+                                    policies.Append("</td>");
+                                        
                                 }
                                 else
                                 {
                                     policies.Append("<td class='width-150'>");
                                     //policies.Append("<ul class='table-ul'>");
                                     int ctr4 = 0;
+                                    policies.Append("<ul class='mod-list'>");
                                     foreach (var app in p.Application)
                                     {
                                         //policies.Append("<tr>");
                                         //policies.AppendFormat("<li class='{0} width-150 table-li'>{1}</li>", DetermineCSS(ctr4), app.ApplicationName);
                                         //policies.Append("</tr>");
-                                        policies.AppendFormat("<span class='width-150'>{0}</span><br />", app.ApplicationName);
+                                        //policies.AppendFormat("<span class='width-150'>{0}</span><br />", app.ApplicationName);
+                                        policies.AppendFormat("<li>{0}</li>", app.ApplicationName);
                                         ctr4++;
                                     }
-                                    //policies.Append("</ul>");
+                                    policies.Append("</ul>");
                                     policies.Append("</td>");
                                 }
 
-                                    policies.Append("<td>");
-                                    policies.Append("<table class='strategy-table sp-table' border=0 width='100%'>");
+                                    policies.Append("<td class='td-nested'>");
+                                    policies.Append("<table class='table table-striped ia-table-override sproc-table' width='100%' height='100%'>");
                                     int ctr5 = 0;
                                     foreach (var sp in p.SubProcesses)
                                     {
+                                        string lastRowCss = string.Empty;
+                                        if (ctr5 + 1 == (p.SubProcesses.Count)) {
+                                            lastRowCss = " sproc-last-row ";
+                                        }
                                         policies.Append("<tr>");
                                         if (sp.SubProcessDiagramID > 0)
                                         {
-                                            policies.AppendFormat("<td class='{0} width-200'><a href=\"Default.aspx?id={1}\" target=\"_blank\">{2}</a></td>", DetermineCSS(ctr5), sp.SubProcessDiagramID, sp.SubProcessName);
+                                            policies.AppendFormat("<td class='{0} width-200 {1}'><a href=\"Default.aspx?id={2}\" target=\"_blank\">{3}</a></td>", DetermineCSS(ctr5), lastRowCss, sp.SubProcessDiagramID, sp.SubProcessName);
                                         }
                                         else
                                         {
-                                            policies.AppendFormat("<td class='{0} width-200'>{1}</td>", DetermineCSS(ctr5), sp.SubProcessName);
+                                            policies.AppendFormat("<td class='{0} width-200 {1}'>{2}</td>", DetermineCSS(ctr5), lastRowCss, sp.SubProcessName);
                                         }
                                         ctr5++;
 
-                                            policies.Append("<td>");
-
-                                            policies.Append("<table class='strategy-table module-table' border=0 width='100%'>");
+                                            policies.Append("<td class='td-nested'>");
+                                        /*
+                                            policies.Append("<table class='table table-striped  ia-table-override mod-table' width='100%' height='100%'>");
                                             int ctr6 = 0;
+                                            string modLastRowCss = string.Empty;
+                                            
                                             foreach (var mod in sp.Modules)
                                             {
+
+                                                if (ctr6 + 1 == (sp.Modules.Count))
+                                                {
+                                                    modLastRowCss = " mod-last-row ";
+                                                }
+
                                                 policies.Append("<tr>");
-                                                policies.AppendFormat("<td class='{0} width-300'>{1}</td>", DetermineCSS(ctr6), mod.ModuleName);
+                                                policies.AppendFormat("<td class='{0} {1}'>{2}</td>", DetermineCSS(ctr6), modLastRowCss, mod.ModuleName);
                                                 policies.Append("</tr>");
                                                 ctr6++;
                                             }
-                                            policies.Append(ENDTABLETAG);
+
+                                            if (sp.Modules.Count == 0)
+                                            {
+                                                policies.Append("<tr><td>&nbsp;</td></tr>");
+                                            }
+
+                                            policies.Append(ENDTABLETAG);*/
+                                            policies.Append("<ul class='mod-list'>");
+                                            foreach (var mod in sp.Modules)
+                                            {
+                                                
+                                                policies.AppendFormat("<li>{0}</li>", mod.ModuleName);
+                                                
+                                            }
+                                            policies.Append("</ul>");
                                             policies.Append("</td>");
                                         
                                         policies.Append("</tr>");
@@ -151,7 +181,7 @@ namespace ADB.SA.Reports.Presenter.Content
                     policies.Append(ENDTABLETAG);
                     string css0 = DetermineCSS(ctr0);
                     html.AppendFormat(
-                        "<tr><td class='{0} width-100 agenda-column'>{1}</td><td>{2}</td></tr>",
+                        "<tr><td class='{0} width-100 agenda-column'>{1}</td><td class='td-nested'>{2}</td></tr>",
                         css0,
                         item.Agenda,
                         policies.ToString()
@@ -174,9 +204,9 @@ namespace ADB.SA.Reports.Presenter.Content
             string css = string.Empty;
 
             if (counter % 2 == 0)
-                css = "even-td";
+                css = "";
             else
-                css = "odd-td";
+                css = "";
 
             return css;
         }

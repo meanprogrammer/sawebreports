@@ -21,294 +21,163 @@ namespace ADB.SA.Reports.Presenter.Content
             entityData = new EntityData();
         }
 
-        public override string BuildDetail(ADB.SA.Reports.Entities.DTO.EntityDTO dto)
+        public override object BuildDetail(ADB.SA.Reports.Entities.DTO.EntityDTO dto)
         {
-            StringBuilder html = new StringBuilder();
-
-            html.AppendFormat(Resources.TableStartTag, "grid");
-            html.Append(Resources.TableRowStartTag);
-            html.AppendFormat(Resources.TableHeaderTag, 3, GlobalStringResource.SubprocessName);
-            html.Append(Resources.TableRowEndTag);
-
+            BpmnDetailCTLDTO detail = new BpmnDetailCTLDTO();
             List<EntityDTO> relatedCtlSubProcess = entityData.GetCtlSubProcess(dto.ID);
 
             if (relatedCtlSubProcess.Count > 0)
             {
                 foreach (var ctl in relatedCtlSubProcess)
                 {
-                    html.Append(Resources.TableRowStartTag);
-                    html.AppendFormat(Resources.TableCellWithColSpan, string.Empty, 3, ctl.Name);
-                    html.Append(Resources.TableRowEndTag);
+                    detail.RelatedSubProcess.Add(ctl.Name);
                 }
             }
 
-            html.AppendFormat(Resources.TableHeaderTag, 3, GlobalStringResource.Details);
-
-            html.Append(Resources.TableRowStartTag);
-            html.AppendFormat(Resources.TableCellLabel, string.Empty, GlobalStringResource.User);
-            html.AppendFormat(Resources.TableCellWithColSpan, string.Empty, 2,
-                dto.RenderHTML(GlobalStringResource.User, RenderOption.Break));
-            html.Append(Resources.TableRowEndTag);
-
-            html.Append(Resources.TableRowStartTag);
-            html.AppendFormat(Resources.TableCellLabel, string.Empty, GlobalStringResource.ActivityNature);
-            html.AppendFormat(Resources.TableCellWithColSpan, string.Empty, 2,
-                dto.RenderHTML(GlobalStringResource.ActivityNature, RenderOption.Break));
-            html.Append(Resources.TableRowEndTag);
-
-            html.Append(Resources.TableRowStartTag);
-            html.AppendFormat(Resources.TableCellLabel, string.Empty, GlobalStringResource.TriggerInput);
-            html.AppendFormat(Resources.TableCellWithColSpan, string.Empty, 2, dto.RenderHTML(GlobalStringResource.TriggerInput, RenderOption.Break));
-            html.Append(Resources.TableRowEndTag);
-
-            html.Append(Resources.TableRowStartTag);
-            html.AppendFormat(Resources.TableCellLabel, string.Empty, GlobalStringResource.Output);
-            html.AppendFormat(Resources.TableCellWithColSpan, string.Empty, 2, dto.RenderHTML(GlobalStringResource.Output, RenderOption.Break));
-            html.Append(Resources.TableRowEndTag);
-
-            html.Append(Resources.TableRowStartTag);
-            html.AppendFormat(Resources.TableCellLabel, string.Empty, GlobalStringResource.ActivityStepDescription);
-            html.AppendFormat(Resources.TableCellWithColSpan, string.Empty, 2, dto.RenderHTML(GlobalStringResource.ActivityStepDescription, RenderOption.Break));
-            html.Append(Resources.TableRowEndTag);
-
-            html.Append(Resources.TableRowStartTag);
-            html.AppendFormat(Resources.TableCellLabel, string.Empty, GlobalStringResource.ActivityNarrative);
-            html.AppendFormat(Resources.TableCellWithColSpan, string.Empty, 2, dto.RenderHTML(GlobalStringResource.ActivityNarrative,
-                RenderOption.Paragraph));
-            html.Append(Resources.TableRowEndTag);
-
-            html.Append(Resources.TableEndTag);
-
-            html.AppendFormat(Resources.TableStartTag, "grid");
+            detail.User = dto.RenderHTML(GlobalStringResource.User, RenderOption.Break);
+            detail.ActivityNature = dto.RenderHTML(GlobalStringResource.ActivityNature, RenderOption.Break);
+            detail.TriggerInput = dto.RenderHTML(GlobalStringResource.TriggerInput, RenderOption.Break);
+            detail.Output = dto.RenderHTML(GlobalStringResource.Output, RenderOption.Break);
+            detail.ActivityStepDescription = dto.RenderHTML(GlobalStringResource.ActivityStepDescription, RenderOption.Break);
+            detail.ActivityNarrative = dto.RenderHTML(GlobalStringResource.ActivityNarrative,
+                RenderOption.Paragraph);
 
             List<EntityDTO> controTypes = entityData.GetControlTypesCtl(dto.ID);
+            detail.ControlDetails = new List<ControlDetailItem>();
             if (controTypes.Count > 0)
             {
-                html.AppendFormat(Resources.TableHeaderTag, 9, "Control Details");
-
-                html.Append(Resources.TableRowStartTag);
-                html.AppendFormat(Resources.TableCellWithColSpan, string.Empty, 9, "Control Objectives Legend:</br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>C</b> - Completeness&emsp;&emsp;&emsp;<b>A</b> - Accuracy&emsp;&emsp;&emsp;<b>V</b> - Validity&emsp;&emsp;&emsp;<b>R</b> - Restricted Access"); 
-                html.Append(Resources.TableRowEndTag);
-
-                html.Append(Resources.TableRowStartTag);
-                html.AppendFormat(Resources.TableCellWithColSpan, string.Empty, 9, "");
-                html.Append(Resources.TableRowEndTag);
-                
-                html.Append(Resources.TableRowStartTag);
-                html.AppendFormat(Resources.TableCell, "td-head", "Control Name");
-                html.AppendFormat(Resources.TableCell, "td-head", "Control Description");
-                html.AppendFormat(Resources.TableCell, "td-head", "C");
-                html.AppendFormat(Resources.TableCell, "td-head", "A");
-                html.AppendFormat(Resources.TableCell, "td-head", "V");
-                html.AppendFormat(Resources.TableCell, "td-head", "R");
-                html.AppendFormat(Resources.TableCell, "td-head", "Control Type");
-                html.AppendFormat(Resources.TableCell, "td-head", "Control Kind");
-                html.AppendFormat(Resources.TableCell, "td-head", "Control Owner");
-                html.Append(Resources.TableRowEndTag);
-
                 foreach (EntityDTO control in controTypes)
                 {
+                    ControlDetailItem item = new ControlDetailItem();
                     control.ExtractProperties();
-                    html.Append(Resources.TableRowStartTag);
-                    html.AppendFormat(Resources.TableCell, string.Empty, control.Name);
-                    html.AppendFormat(Resources.TableCell, string.Empty, control.RenderHTML("Description", RenderOption.None));
-                    html.AppendFormat(Resources.TableCell, string.Empty, GetImageTag(control.RenderHTML("Completeness", RenderOption.None)));
-                    html.AppendFormat(Resources.TableCell, string.Empty, GetImageTag(control.RenderHTML("Accuracy", RenderOption.None)));
-                    html.AppendFormat(Resources.TableCell, string.Empty, GetImageTag(control.RenderHTML("Validity", RenderOption.None)));
-                    html.AppendFormat(Resources.TableCell, string.Empty, GetImageTag(control.RenderHTML("Restricted Access", RenderOption.None)));
-                    html.AppendFormat(Resources.TableCell, string.Empty, control.RenderHTML("Control Type", RenderOption.None));
-                    html.AppendFormat(Resources.TableCell, string.Empty, control.RenderHTML("Control Kind", RenderOption.None));
-                    html.AppendFormat(Resources.TableCell, string.Empty, control.RenderHTML("WHO",RenderOption.None));
-                    html.Append(Resources.TableRowEndTag);
+                    item.ControlName = control.Name;
+                    item.ControlDescription = control.RenderHTML("Description", RenderOption.None);
+                    item.Completeness =  GetImageTag(control.RenderHTML("Completeness", RenderOption.None));
+                    item.Accuracy = GetImageTag(control.RenderHTML("Accuracy", RenderOption.None));
+                    item.Validity = GetImageTag(control.RenderHTML("Validity", RenderOption.None));
+                    item.RestrictedAccess = GetImageTag(control.RenderHTML("Restricted Access", RenderOption.None));
+                    item.ControlType = control.RenderHTML("Control Type", RenderOption.None);
+                    item.ControlKind = control.RenderHTML("Control Kind", RenderOption.None);
+                    item.ControlOwner =control.RenderHTML("WHO",RenderOption.None);
 
 
-                    html.Append(Resources.TableRowStartTag);
-                    html.Append("<td colspan='9'>");
-                    html.Append(Resources.TableStartTag);
-                    html.Append(Resources.TableRowStartTag);
                     
-                    StringBuilder controlHtml = CreateControlDetailsHtml(control);
-                    html.AppendFormat("<td valign=\"top\" style=\"width:50%;border:0 !important;\">{0}</td>", controlHtml);
-                    //html.AppendFormat(Resources.TableCellWithColSpan, string.Empty, 3, controlHtml.ToString());
-                    StringBuilder riskHtml = CreateRiskDetails(control);
-                    html.AppendFormat("<td valign=\"top\" style=\"width:50%;border:0 !important;\">{0}</td>", riskHtml);
-                    //html.AppendFormat(Resources.TableCellWithColSpan, string.Empty, 6, riskHtml.ToString());
-
-
-                    html.Append(Resources.TableRowEndTag);
-                    html.Append(Resources.TableEndTag);
-                    html.Append("</td>");
-                    html.Append(Resources.TableRowEndTag);
+                    item.ControlDetail = CreateControlDetailsHtml(control);
+                    item.RiskDetail = CreateRiskDetails(control);
+                    detail.ControlDetails.Add(item);
                 }
             }
-
-            html.Append(Resources.TableEndTag);
-            
-
-            return html.ToString();
+            detail.Title = dto.Name;
+            return detail;
         }
 
-        private StringBuilder CreateRiskDetails(EntityDTO control)
+        private RiskDetailDTO CreateRiskDetails(EntityDTO control)
         {
-            StringBuilder riskHtml = new StringBuilder();
+            RiskDetailDTO detail = new RiskDetailDTO();
 
             EntityDTO relatedRisk = entityData.GetControlRelatedRisk(control.ID);
             if (relatedRisk != null)
             {
                 relatedRisk.ExtractProperties();
-                riskHtml.AppendFormat(Resources.TableStartTag, "grid");
-
-
-                riskHtml.Append(Resources.TableRowStartTag);
-                riskHtml.AppendFormat(Resources.TableHeaderTag, 2, string.Format("Risk - {0}", relatedRisk.Name));
-                riskHtml.Append(Resources.TableRowEndTag);
 
                 //Consequence
-                riskHtml.Append(Resources.TableRowStartTag);
-                riskHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Consequence");
-                riskHtml.AppendFormat(Resources.TableCell, string.Empty, relatedRisk.RenderHTML("Consequence", RenderOption.Break));
-                riskHtml.Append(Resources.TableRowEndTag);
+                detail.Consequence = relatedRisk.RenderHTML("Consequence", RenderOption.Break);
 
                 //Completeness
-                riskHtml.Append(Resources.TableRowStartTag);
-                riskHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Completeness");
-                riskHtml.AppendFormat(Resources.TableCell, string.Empty, relatedRisk.RenderHTML("Completeness", RenderOption.Break));
-                riskHtml.Append(Resources.TableRowEndTag);
+                detail.Completeness = relatedRisk.RenderHTML("Completeness", RenderOption.Break);
 
                 //Existence/Occurrence
-                riskHtml.Append(Resources.TableRowStartTag);
-                riskHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Existence/Occurrence");
-                riskHtml.AppendFormat(Resources.TableCell, string.Empty, relatedRisk.RenderHTML("Existence/Occurrence", RenderOption.Break));
-                riskHtml.Append(Resources.TableRowEndTag);
+                detail.ExistenceOccurrence = relatedRisk.RenderHTML("Existence/Occurrence", RenderOption.Break);
 
                 //Valuation or Allocation
-                riskHtml.Append(Resources.TableRowStartTag);
-                riskHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Valuation or Allocation");
-                riskHtml.AppendFormat(Resources.TableCell, string.Empty, relatedRisk.RenderHTML("Valuation or Allocation", RenderOption.Break));
-                riskHtml.Append(Resources.TableRowEndTag);
+                detail.ValuationOrAllocation = relatedRisk.RenderHTML("Valuation or Allocation", RenderOption.Break);
 
                 //Rights and Obligations
-                riskHtml.Append(Resources.TableRowStartTag);
-                riskHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Rights and Obligations");
-                riskHtml.AppendFormat(Resources.TableCell, string.Empty, relatedRisk.RenderHTML("Rights and Obligations", RenderOption.Break));
-                riskHtml.Append(Resources.TableRowEndTag);
+                detail.RightsAndObligations = relatedRisk.RenderHTML("Rights and Obligations", RenderOption.Break);
 
                 //Presentation and Disclosure
-                riskHtml.Append(Resources.TableRowStartTag);
-                riskHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Presentation and Disclosure");
-                riskHtml.AppendFormat(Resources.TableCell, string.Empty, relatedRisk.RenderHTML("Presentation and Disclosure", RenderOption.Break));
-                riskHtml.Append(Resources.TableRowEndTag);
+                detail.PresentationAndDisclosure = relatedRisk.RenderHTML("Presentation and Disclosure", RenderOption.Break);
 
                 //Description
-                riskHtml.Append(Resources.TableRowStartTag);
-                riskHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Description");
-                riskHtml.AppendFormat(Resources.TableCell, string.Empty, relatedRisk.RenderHTML("Description", RenderOption.Break));
-                riskHtml.Append(Resources.TableRowEndTag);
+                detail.Description = relatedRisk.RenderHTML("Description", RenderOption.Break);
 
                 //Reference Documents
-                riskHtml.Append(Resources.TableRowStartTag);
-                riskHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Reference Documents");
-                riskHtml.AppendFormat(Resources.TableCell, string.Empty, relatedRisk.RenderHTML("Reference Documents", RenderOption.Break));
-                riskHtml.Append(Resources.TableRowEndTag);
-
-                riskHtml.Append(Resources.TableEndTag);
+                detail.ReferencedDocuments = relatedRisk.RenderHTML("Reference Documents", RenderOption.Break);
             }
-            return riskHtml;
+            return detail;
         }
 
-        private StringBuilder CreateControlDetailsHtml(EntityDTO control)
+        private ControlDetailDTO CreateControlDetailsHtml(EntityDTO control)
         {
-            StringBuilder controlHtml = new StringBuilder();
-            controlHtml.AppendFormat(Resources.TableStartTag, "grid");
+            ControlDetailDTO detail = new ControlDetailDTO();
 
-            controlHtml.Append(Resources.TableRowStartTag);
-            controlHtml.AppendFormat(Resources.TableHeaderTag, 2, "Control");
-            controlHtml.Append(Resources.TableRowEndTag);
-
+ 
             //Mitigates Risk
-            controlHtml.Append(Resources.TableRowStartTag);
-            controlHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Mitigates Risk");
-            controlHtml.AppendFormat(Resources.TableCell, string.Empty, control.RenderHTML("Mitigates Risk", RenderOption.Break));
-            controlHtml.Append(Resources.TableRowEndTag);
+            detail.MitigatesRisk = control.RenderHTML("Mitigates Risk", RenderOption.None);
 
             //Evidence
-            controlHtml.Append(Resources.TableRowStartTag);
-            controlHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Evidence");
-            controlHtml.AppendFormat(Resources.TableCell, string.Empty, control.RenderHTML("Evidence", RenderOption.Break));
-            controlHtml.Append(Resources.TableRowEndTag);
+            detail.Evidence = control.RenderHTML("Evidence", RenderOption.Break);
 
             //Business Unit
-            controlHtml.Append(Resources.TableRowStartTag);
-            controlHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Business Unit");
-
-            List<EntityDTO> relatedBusinessUnit = entityData.GetRelatedBusinessUnit(control.ID);
-
-            string rbuhtml = RenderControlRelatedProperties(relatedBusinessUnit);
-
-            controlHtml.AppendFormat(Resources.TableCell, string.Empty, rbuhtml);
-            controlHtml.Append(Resources.TableRowEndTag);
+            List<BpmnDetailHoverDTO> relatedBusinessUnit = ConvertToHoverDTO(entityData.GetRelatedBusinessUnit(control.ID));
+            //string rbuhtml = RenderControlRelatedProperties(relatedBusinessUnit);
+            detail.BusinessUnit = relatedBusinessUnit;
 
             //WHO - (control owner)
-            controlHtml.Append(Resources.TableRowStartTag);
-            controlHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "WHO - (control owner)");
-
-            List<EntityDTO> relatedControlOwners = entityData.GetRelatedControlOwner(control.ID);
-            string rcoHtml = RenderControlRelatedProperties(relatedControlOwners);
-
-            controlHtml.AppendFormat(Resources.TableCell, string.Empty, rcoHtml);
-            controlHtml.Append(Resources.TableRowEndTag);
+            List<BpmnDetailHoverDTO> relatedControlOwners = ConvertToHoverDTO(entityData.GetRelatedControlOwner(control.ID));
+            //string rcoHtml = RenderControlRelatedProperties(relatedControlOwners);
+            detail.ControlOwner = relatedControlOwners;
 
             //Control Objectives
-            controlHtml.Append(Resources.TableRowStartTag);
-            controlHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Control Objectives");
-
-            List<EntityDTO> relatedControlObj = entityData.GetRelatedControlObjectives(control.ID);
-            string rcObj = RenderControlRelatedProperties(relatedControlObj);
-
-            controlHtml.AppendFormat(Resources.TableCell, string.Empty, rcObj);
-            controlHtml.Append(Resources.TableRowEndTag);
+            List<BpmnDetailHoverDTO> relatedControlObj = ConvertToHoverDTO(entityData.GetRelatedControlObjectives(control.ID));
+            detail.ControlObjectives = relatedControlObj;
 
             //Frequency
-            controlHtml.Append(Resources.TableRowStartTag);
-            controlHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Frequency");
-
-            List<EntityDTO> relatedFrequency = entityData.GetRelatedFrequency(control.ID);
-            string rcfHtml = RenderControlRelatedProperties(relatedFrequency);
-
-            controlHtml.AppendFormat(Resources.TableCell, string.Empty, rcfHtml);
-            controlHtml.Append(Resources.TableRowEndTag);
+            List<BpmnDetailHoverDTO> relatedFrequency = ConvertToHoverDTO(entityData.GetRelatedFrequency(control.ID));
+            detail.Frequency = relatedFrequency;
 
             //Application Name
-            controlHtml.Append(Resources.TableRowStartTag);
-            controlHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Application Name");
-
-            List<EntityDTO> relatedApplications = entityData.GetRelatedControlApplications(control.ID);
-            string raHtml = RenderControlRelatedProperties(relatedApplications);
-
-            controlHtml.AppendFormat(Resources.TableCell, string.Empty, raHtml);
-            controlHtml.Append(Resources.TableRowEndTag);
+            List<BpmnDetailHoverDTO> relatedApplications = ConvertToHoverDTO(entityData.GetRelatedControlApplications(control.ID));
+            detail.ApplicationName = relatedApplications;
 
             //Control Category
-            controlHtml.Append(Resources.TableRowStartTag);
-            controlHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Control Category");
-            controlHtml.AppendFormat(Resources.TableCell, string.Empty, control.RenderHTML("Control Category", RenderOption.Break));
-            controlHtml.Append(Resources.TableRowEndTag);
+            detail.ControlCategory = control.RenderHTML("Control Category", RenderOption.Break);
 
             //Corrective
-            controlHtml.Append(Resources.TableRowStartTag);
-            controlHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Corrective");
-            controlHtml.AppendFormat(Resources.TableCell, string.Empty, control.RenderHTML("Corrective", RenderOption.Break));
-            controlHtml.Append(Resources.TableRowEndTag);
+            detail.Corrective = control.RenderHTML("Corrective", RenderOption.Break);
 
             //Reference Documents
-            controlHtml.Append(Resources.TableRowStartTag);
-            controlHtml.AppendFormat(Resources.TableCellLabel, string.Empty, "Reference Documents");
-            controlHtml.AppendFormat(Resources.TableCell, string.Empty, control.RenderHTML("Reference Documents", RenderOption.Break));
-            controlHtml.Append(Resources.TableRowEndTag);
+            detail.ReferenceDocuments = control.RenderHTML("Reference Documents", RenderOption.Break);
 
-            controlHtml.Append(Resources.TableEndTag);
-            return controlHtml;
+            return detail;
         }
+
+        private List<BpmnDetailHoverDTO> ConvertToHoverDTO(List<EntityDTO> rawData) 
+        {
+            List<BpmnDetailHoverDTO> list = new List<BpmnDetailHoverDTO>();
+            foreach (EntityDTO d in rawData)
+            {
+                d.ExtractProperties();
+                BpmnDetailHoverDTO dto = new BpmnDetailHoverDTO();
+                dto.Title = d.Name;
+                dto.Description = BuildDescription(d);
+                dto.ReferencedDocuments = BuildReferencedDocuments(d);
+                list.Add(dto);
+            }
+            return list;
+        }
+
+        //private string BuildDescription(HtmlTable table, EntityDTO dto)
+        //{
+        //     return dto.RenderHTML(GlobalStringResource.Description, RenderOption.Break);
+        //}
+
+        //private string BuildReferencedDocuments(HtmlTable table, EntityDTO dto)
+        //{
+        //    string link = dto.RenderHTML(GlobalStringResource.ReferenceDocuments, RenderOption.NewLine);
+        //    return dto.RenderMultipleLinks(link, true);
+        //}
+
 
         private string RenderControlRelatedProperties(List<EntityDTO> controlRelatedEntity)
         {
@@ -322,7 +191,7 @@ namespace ADB.SA.Reports.Presenter.Content
                     html.Append("<li>");
                     html.AppendFormat("<a tag=\"{0}\">{1}</a>", entity.ID, entity.Name);
                     html.AppendFormat("<div id=\"div_{0}\" class=\"tooltip-holder\">", entity.ID);
-                    html.Append(DetailBuilder.BuildDetail(entity));
+                    html.Append(DetailBuilder2.BuildDetail(entity));
                     html.Append("</div>");
                     html.Append("</li>");
                 }

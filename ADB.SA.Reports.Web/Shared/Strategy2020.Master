@@ -10,16 +10,16 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div id="ia-mastercontainer">
     <div class="row clearfix">
-        <div class="col-md-12">
+        <div class="col-md-12" id="ia-header">
                         <img class="adb-logo" alt="" src="images/ADB-LOGO.jpg" height="40" width="40" />
                 <span class="app-title">
                     Impact Analysis</span>
         </div>
 
     </div>
-    <div class="row clearfix">
+    <div id="orange-line" class="row clearfix">
                     <div class="col-md-12" style="height: 10px; width: 100%; background-color: #ed9400; background-image: url('images/bg.png');
             background-repeat: repeat-x;">
         </div>

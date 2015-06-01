@@ -15,7 +15,7 @@ namespace ADB.SA.Reports.Presenter.Content
             this.strategy = strategy;
         }
 
-        public string BuildDetail(EntityDTO dto)
+        public object BuildDetail(EntityDTO dto)
         {
             return this.strategy.BuildDetail(dto);
         }

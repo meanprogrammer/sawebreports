@@ -12,18 +12,18 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ADB.SA.Reports.Web</RootNamespace>
     <AssemblyName>ADB.SA.Reports.Web</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
     <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,11 +56,12 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -77,9 +78,6 @@
     <Content Include="styles\styles.css" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ajax\AjaxFileUploadHandler.ashx.cs">
-      <DependentUpon>AjaxFileUploadHandler.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Ajax\commentajax.ashx.cs">
       <DependentUpon>commentajax.ashx</DependentUpon>
     </Compile>
@@ -250,6 +248,28 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ADB.SA.Reports.Entities\ADB.SA.Reports.Entities.csproj">
+      <Project>{49B8DDA3-7903-4C10-B678-7B90D7936C48}</Project>
+      <Name>ADB.SA.Reports.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADB.SA.Reports.Global\ADB.SA.Reports.Global.csproj">
+      <Project>{7438A5F8-7E3C-47D0-ACA4-67A791605EBB}</Project>
+      <Name>ADB.SA.Reports.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADB.SA.Reports.Presenter\ADB.SA.Reports.Presenter.csproj">
+      <Project>{9915B3C1-3846-44D5-A4BA-C07C8B4A89A1}</Project>
+      <Name>ADB.SA.Reports.Presenter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADB.SA.Reports.Utilities\ADB.SA.Reports.Utilities.csproj">
+      <Project>{A6901A0F-9F40-41A5-A65E-46391ED1FECC}</Project>
+      <Name>ADB.SA.Reports.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADB.SA.Reports.View\ADB.SA.Reports.View.csproj">
+      <Project>{9ECF9E9D-D7D0-497C-9E71-81AC62649624}</Project>
+      <Name>ADB.SA.Reports.View</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Configuration Tool\ADB.SA.Reports.Config.Tools.exe.config" />
     <Content Include="Configuration Tool\ADB.SA.Reports.Data.dll" />
     <Content Include="Configuration Tool\ADB.SA.Reports.Entities.dll" />
@@ -287,7 +307,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Ajax\AjaxFileUploadHandler.ashx" />
     <Content Include="AttachmentDownload.aspx" />
     <Content Include="CommentFullDetail.aspx" />
     <Content Include="CommentFullThread.aspx" />
@@ -358,28 +377,6 @@
     <Folder Include="CommentFiles\" />
     <Folder Include="Diagrams\Sliced\wmf_temp\" />
     <Folder Include="Diagrams\wmf_temp\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ADB.SA.Reports.Entities\ADB.SA.Reports.Entities.csproj">
-      <Project>{49b8dda3-7903-4c10-b678-7b90d7936c48}</Project>
-      <Name>ADB.SA.Reports.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ADB.SA.Reports.Global\ADB.SA.Reports.Global.csproj">
-      <Project>{7438a5f8-7e3c-47d0-aca4-67a791605ebb}</Project>
-      <Name>ADB.SA.Reports.Global</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ADB.SA.Reports.Presenter\ADB.SA.Reports.Presenter.csproj">
-      <Project>{9915b3c1-3846-44d5-a4ba-c07c8b4a89a1}</Project>
-      <Name>ADB.SA.Reports.Presenter</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ADB.SA.Reports.Utilities\ADB.SA.Reports.Utilities.csproj">
-      <Project>{a6901a0f-9f40-41a5-a65e-46391ed1fecc}</Project>
-      <Name>ADB.SA.Reports.Utilities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ADB.SA.Reports.View\ADB.SA.Reports.View.csproj">
-      <Project>{9ecf9e9d-d7d0-497c-9e71-81ac62649624}</Project>
-      <Name>ADB.SA.Reports.View</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

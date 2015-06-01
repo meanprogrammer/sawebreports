@@ -12,17 +12,14 @@ namespace ADB.SA.Reports.Presenter.Content
 {
     public class AcronymDetailStrategy : DetailStrategyBase
     {
-        public override string BuildDetail(EntityDTO dto)
+        public override object BuildDetail(EntityDTO dto)
         {
-            HtmlTable t = new HtmlTable(2, 0, "grid");
-            //t.AppendRowHtml(BuildCloseLink(2));
-            //t.AddHeader(dto.Name, 2);
-            //t.AppendRowHtml(base.BuildType(dto.Type,1 ));
-            t.AddCell(GlobalStringResource.AbbreviationDescription);
-            t.AddCell(dto.RenderHTML(GlobalStringResource.AbbreviationDescription, RenderOption.Break));
-            BuildDescription(t, dto);
-            BuildReferencedDocuments(t, dto);
-            return t.EndHtmlTable();
+            AcronymDetailDTO detail = new AcronymDetailDTO();
+            detail.Title = dto.Name;
+            detail.AbbreviationDescription = dto.RenderHTML(GlobalStringResource.AbbreviationDescription, RenderOption.Break);
+            detail.Description = BuildDescription(dto);
+            detail.ReferencedDocuments = BuildReferencedDocuments(dto);
+            return detail;
         }
     }
 }
