@@ -25,6 +25,7 @@ namespace ADB.SA.Reports.Web
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
             if (Request[Resources.IdKey] != null)
             {
                 int id = Convert.ToInt32(Request[Resources.IdKey]);

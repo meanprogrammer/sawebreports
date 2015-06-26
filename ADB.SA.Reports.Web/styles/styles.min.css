@@ -159,7 +159,6 @@ li.editor-0{width:88px!important}
 .alert-override{margin:5px 10px!important}
 .diagram-image{margin:0 auto}
 .quicklink-override{left:auto!important;right:0!important;text-align:left;font-size:12px!important}
-#content-tab>li.active>a,#content-tab>li.active>a:hover,#content-tab>li.active>a:focus{color:#FFF}
 .top-margin-10{margin-top:10px!important}
 .diagram-containter{overflow-x:scroll;overflow:auto}
 .modal-body-override{padding-bottom:0!important}
@@ -197,3 +196,6 @@ li.editor-0{width:88px!important}
 .mod-list{list-style:outside none none;padding-left:0;margin-bottom:0!important}
 .mod-list li{border-bottom:1px solid #ddd;padding:10px}
 .mod-list li:last-child{border-bottom-width:0!important}
+.nav-tabs{margin-bottom:0}
+.nav-tabs>li>a{border:1px solid #ddd!important}
+.nav-tabs>li.active>a,.nav-tabs>li.active>a:hover,.nav-tabs>li.active>a:focus{border-bottom-color:#fff!important}

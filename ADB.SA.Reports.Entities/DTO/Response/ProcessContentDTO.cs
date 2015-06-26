@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ADB.SA.Reports.Entities.DTO
 {
-    public class ProcessContentDTO
+    public class ProcessContentDTO : IResizeDiagram
     {
         public DiagramContent Diagram { get; set; }
         public ProcessDescription Description { get; set; }
@@ -17,6 +17,7 @@ namespace ADB.SA.Reports.Entities.DTO
         public List<FrameworkReferenceItem> Frameworks { get; set; }
         public List<InternalReferenceItem> InternalReferences { get; set; }
         public int CurrentID { get; set; }
+        public bool ShowResize { get;set; }
     }
 
     public class InternalReferenceItem

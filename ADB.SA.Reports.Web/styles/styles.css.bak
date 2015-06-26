@@ -1128,7 +1128,10 @@ li.editor-0 {
     text-align: left;
     font-size:12px !important;
 }
-
+#content-tab > li.active > a, #content-tab > li.active > a:hover, #content-tab > li.active > a:focus {
+    /*background-color: #517704 !important;*/
+    color: #FFFFFF;
+}
 .top-margin-10 { margin-top:10px !important; }
 .diagram-containter { overflow-x:scroll;overflow:auto; }
 .modal-body-override { padding-bottom: 0px !important; }
@@ -1239,14 +1242,17 @@ li.editor-0 {
 .mod-list li { border-bottom: 1px solid #ddd;
     padding: 10px; }
 .mod-list li:last-child { border-bottom-width:0 !important; }
+
+
+.tab-pane {
+
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px;
+}
+
 .nav-tabs {
     margin-bottom: 0;
-}
-
-.nav-tabs > li > a {
-    border: 1px solid #ddd !important;
-}
-
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-    border-bottom-color:#fff !important;
 }

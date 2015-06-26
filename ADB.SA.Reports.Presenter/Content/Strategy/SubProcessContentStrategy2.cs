@@ -39,6 +39,7 @@ namespace ADB.SA.Reports.Presenter.Content
             sp.BusinessRuleMappings = BusinessMapping(id);
             sp.ChangeHistories = ChangeHistory(id);
             sp.CurrentID = id;
+            sp.ShowResize = ShowResize();
             return sp;
         }
 

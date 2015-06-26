@@ -18,6 +18,7 @@ namespace ADB.SA.Reports.Presenter.Content
             };
             content.DiagramDescription = DiagramDescription(dto);
             content.CurrentID = dto.ID;
+            content.ShowResize = ShowResize();
             return content;
         }
 

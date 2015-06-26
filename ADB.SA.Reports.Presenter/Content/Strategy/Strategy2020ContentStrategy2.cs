@@ -37,6 +37,7 @@ namespace ADB.SA.Reports.Presenter.Content
             st2020.InstitutionalGoals = InstitutionalGoals(id);
             st2020.ResultFrameworks = ResultFrameworkLevel(id);
             st2020.CurrentID = id;
+            st2020.ShowResize = ShowResize();
             return st2020;
         }
 

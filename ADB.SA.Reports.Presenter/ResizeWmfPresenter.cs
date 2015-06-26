@@ -5,16 +5,18 @@ using System.Text;
 using ADB.SA.Reports.Entities.DTO;
 using ADB.SA.Reports.Data;
 using ADB.SA.Reports.Utilities.WMF;
-using ADB.SA.Reports.Utilities;
 
-namespace ADB.SA.Reports.Presenter.Content
+namespace ADB.SA.Reports.Presenter
 {
-    public abstract class MainContentStrategyBase
+    public class ResizeWmfPresenter
     {
-        public abstract object BuildContent(EntityDTO dto);
-        public string BuildDiagramContent(EntityDTO dto)
+        public string BuildDiagramContent(int id, float percentage)
         {
+            
             EntityData data = new EntityData();
+
+            EntityDTO dto = data.GetOneEntity(id);
+            dto.ExtractProperties();
             FileData files = new FileData();
             FileDTO file = files.GetFile(dto.DGXFileName);
             byte[] imageBytes = file.Data;
@@ -22,13 +24,8 @@ namespace ADB.SA.Reports.Presenter.Content
             int poolCount = data.GetPoolCount(dto.ID);
             WmfImageManager imageManager = new WmfImageManager(dto, imageBytes,
                 path, dto.Type, poolCount, false);
-            path = imageManager.ProcessImage();
+            path = imageManager.ProcessImageWithPercentage(percentage);
             return path.Replace(@"\", @"/");
-        }
-
-        public bool ShowResize()
-        {
-            return bool.Parse(AppSettingsReader.GetValue("SHOWRESIZE"));
         }
     }
 }

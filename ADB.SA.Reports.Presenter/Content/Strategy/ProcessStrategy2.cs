@@ -62,6 +62,7 @@ namespace ADB.SA.Reports.Presenter.Content
             process.Frameworks = FrameworkReference(id);
             process.InternalReferences = InternalReference(id);
             process.CurrentID = id;
+            process.ShowResize = ShowResize();
             return process;
         }
 

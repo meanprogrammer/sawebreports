@@ -94,18 +94,91 @@
 
         function downloadattachment(path) {
             window.open("AttachmentDownload.aspx?path=" + path, "_blank", "width=50px,height=50px", false);
-        }    
+        }
 
+        function dochangepercent() {
+            $.ajax({
+                type: "POST",
+                url: "Ajax/resize.ashx?action=resize&percentage=" + $('#newpercentage').val() + "&id=" + $('#reportId').val(),
+                complete: function(xhr, status) {
+                    console.log(xhr);
+                },
+                success: function(result) {
+                    console.log(result);
+                    var randomNum = Math.ceil(Math.random() * 999999);
+                    $(".diagram-containter .center-block").attr("src", result + "?v=" + randomNum);
+                }
+
+            });
+        }
+
+        function dochangepercent2() {
+            $.ajax({
+                type: "POST",
+                url: "Ajax/resize.ashx?action=resize&percentage=" + $('#newpercentage2').val() + "&id=" + $('#reportId').val(),
+                complete: function(xhr, status) {
+                    console.log(xhr);
+                },
+                success: function(result) {
+                    console.log(result);
+                    var randomNum = Math.ceil(Math.random() * 999999);
+                    $(".diagram-containter .center-block").attr("src", result + "?v=" + randomNum);
+                }
+
+            });
+        }
+
+        function dochangepercent3() {
+            $.ajax({
+                type: "POST",
+                url: "Ajax/resize.ashx?action=resize&percentage=" + $('#newpercentage3').val() + "&id=" + $('#reportId').val(),
+                complete: function(xhr, status) {
+                    console.log(xhr);
+                },
+                success: function(result) {
+                    console.log(result);
+                    var randomNum = Math.ceil(Math.random() * 999999);
+                    $(".diagram-containter .center-block").attr("src", result + "?v=" + randomNum);
+                }
+
+            });
+        }
+
+        function dochangepercent4() {
+            $.ajax({
+                type: "POST",
+                url: "Ajax/resize.ashx?action=resize&percentage=" + $('#newpercentage4').val() + "&id=" + $('#reportId').val(),
+                complete: function(xhr, status) {
+                    console.log(xhr);
+                },
+                success: function(result) {
+                    console.log(result);
+                    var randomNum = Math.ceil(Math.random() * 999999);
+                    $(".diagram-containter .center-block").attr("src", result + "?v=" + randomNum);
+                }
+
+            });
+        }
 
     </script>
     <script id="generic-content" type="text/x-handlebars-template">
-        <ul class="nav nav-pills content-tab" id="content-tab">
+        <ul class="nav nav-tabs content-tab" id="content-tab">
             <li><a href="#diagram" data-toggle="tab">Diagram</a></li>
             <li><a href="#ddesc" data-toggle="tab">Diagram Desc.</a></li>
             <li><a href="#comments" data-toggle="tab">Comments</a></li>
         </ul>
         <div class="tab-content top-margin-10">
             <!-- Diagram -->
+            {{#if ShowResize}}
+            <div class="row">
+                <div class="col-md-3">
+                    <input id="newpercentage4" type="text" class="form-control input-sm show-inline" style="width:100px;" />
+                    <input id="gopercentage4" name="gopercentage4" class="btn btn-primary btn-sm" onclick="dochangepercent4();" type="button" value="Proceed" />
+                </div> 
+                <div class="col-md-9">
+                </div>
+            </div>
+            {{/if}}
             <div class="tab-pane" id="diagram">
                 <div class="diagram-containter">
                     <img src="{{Diagram.DiagramPath}}" class="center-block" />
@@ -133,7 +206,7 @@
          <input id="reportId" type="hidden" value="{{CurrentID}}">
     </script>
     <script id="st2020-content" type="text/x-handlebars-template">
-         <ul class="nav nav-pills content-tab" id="content-tab">
+         <ul class="nav nav-tabs content-tab" id="content-tab">
             <li><a href="#diagram" data-toggle="tab">Diagram</a></li>
             <li><a href="#ddesc" data-toggle="tab">Diagram Desc.</a></li>
             <li><a href="#chall" data-toggle="tab">Challenges</a></li>
@@ -150,7 +223,18 @@
          </ul>
          <div class="tab-content top-margin-10">
              <!-- Diagram -->
+             {{#if ShowResize}}
+                        <div class="row">
+             <div class="col-md-3">             
+                        <input id="newpercentage3" type="text" class="form-control input-sm show-inline" style="width:100px;" />
+                        <input id="gopercentage3" name="gopercentage3" class="btn btn-primary btn-sm" onclick="dochangepercent3();" type="button" value="Proceed" />
+                    </div> 
+                    <div class="col-md-9">
+                    </div>
+               </div>
+               {{/if}}
              <div class="tab-pane" id="diagram">
+             
                 <div class="diagram-containter">
                   <img src="{{Diagram.DiagramPath}}" class="center-block" />
                 </div>
@@ -337,7 +421,7 @@
          <input id="reportId" type="hidden" value="{{CurrentID}}">
     </script>
     <script id="subprocess-content" type="text/x-handlebars-template">
-        <ul class="nav nav-pills" id="content-tab">
+        <ul class="nav nav-tabs" id="content-tab">
           <li><a href="#diagram" data-toggle="tab">Diagram</a></li>
           <li><a href="#processdesc" data-toggle="tab">Process</a></li>
           <li><a href="#subprocdesc" data-toggle="tab">Sub-Process Desc.</a></li>
@@ -362,6 +446,16 @@
           <li><a href="#comments" data-toggle="tab">Comments</a></li>
         </ul>
         <div class="tab-content top-margin-10">
+        {{#if ShowResize}}
+        <div class="row">
+             <div class="col-md-3">             
+                        <input id="newpercentage2" type="text" class="form-control input-sm show-inline" style="width:100px;" />
+                        <input id="gopercentage2" name="gopercentage2" class="btn btn-primary btn-sm" onclick="dochangepercent2();" type="button" value="Proceed" />
+                    </div> 
+                    <div class="col-md-9">
+                    </div>
+               </div>
+          {{/if}}
           <!-- Diagram -->
           <div class="tab-pane" id="diagram">
             <div class="diagram-containter">
@@ -574,7 +668,7 @@
     </script>
     <script id="process-content" type="text/x-handlebars-template">
         <!-- Nav tabs -->
-        <ul class="nav nav-pills" id="content-tab">
+        <ul class="nav nav-tabs" id="content-tab">
           <li><a href="#diagram" data-toggle="tab">Diagram</a></li>
           <li><a href="#processdesc" data-toggle="tab">Process Desc.</a></li>
           {{#greaterthanzero ProcessRelations.length}}
@@ -605,9 +699,16 @@
           <!-- Diagram -->
           <div class="tab-pane" id="diagram">
               <div class="row" style="margin-right:10px;">
-                    <div class="col-md-8">             
-                        &nbsp;
-                    </div>    
+{{#if ShowResize}}
+             <div class="col-md-3">             
+                        <input id="newpercentage" type="text" class="form-control input-sm show-inline" style="width:100px;" />
+                        <input id="gopercentage" name="gopercentage" class="btn btn-primary btn-sm" onclick="dochangepercent();" type="button" value="Proceed" />
+                    </div> 
+                    <div class="col-md-5">
+                    </div>
+ {{else}}
+    <div class="col-md-8">&nbsp;</div>
+ {{/if}}
                     <div class="col-md-4" style="text-align:right;">       
                     <button title="" data-placement="left" data-toggle="tooltip" class="btn btn-sm btn-default" type="button" data-original-title="To navigate to the related process and sub-process of this diagram, use the menu on the right. To navigate related informations, select the tabs above."><span class="glyphicon glyphicon-info-sign" style="font-size:18px;"></span></button>
                                             <div class="btn-group">

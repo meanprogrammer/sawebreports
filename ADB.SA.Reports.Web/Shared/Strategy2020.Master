@@ -1,9 +1,10 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Strategy2020.master.cs"
     Inherits="ADB.SA.Reports.Web.Shared.Strategy2020" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+     <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <title></title>
     <link href="../styles/styles.css" rel="stylesheet" type="text/css" />
     <link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
