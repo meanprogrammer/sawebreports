@@ -64,7 +64,7 @@ namespace ADB.SA.Reports.Web.Helpers
                 foreach (var child in menuItems[i - 1].ChildItems)
                 {
                     builder.AppendFormat("<li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"Default.aspx?id={0}\" title=\"{1}\">{2}</a></li>",
-                        child.Key, child.Value, child.Value);
+                        child.ID, child.Text, child.Text);
                 }
                 builder.Append("</ul>");
             }

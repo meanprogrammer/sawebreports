@@ -91,12 +91,12 @@ namespace ADB.SA.Reports.Data
         /// </summary>
         /// <param name="type">type number of the diagram.</param>
         /// <returns>Key value pair of ID and text of child item.</returns>
-        private Dictionary<int, string> GetSubDiagrams(int type)
+        private List<SAMenuItemDTO> GetSubDiagrams(int type)
         {
             EntityData data = new EntityData();
             IDataReader reader = db.ExecuteReader(CommandType.Text,
                                                     string.Format(GlobalStringResource.Data_GetSubDiagramsQuery, type));
-            Dictionary<int, string> list = new Dictionary<int, string>();
+            List<SAMenuItemDTO> list = new List<SAMenuItemDTO>();
             int idIndex = reader.GetOrdinal(GlobalStringResource.ID);
             int nameIndex = reader.GetOrdinal(GlobalStringResource.Name);
             while (reader.Read())
@@ -109,7 +109,11 @@ namespace ADB.SA.Reports.Data
 
                 if (SAModeHelper.IsValidForCurrentMode(id)) // && (dto != null && dto.Publish == true))
                 {
-                    list.Add(id, name);
+                    list.Add(new SAMenuItemDTO()
+                    {
+                        ID = id,
+                        Text = name
+                    });
                 }
                 //if(GroupFilterHelper.IsValidForShow(type, id))
                 //{

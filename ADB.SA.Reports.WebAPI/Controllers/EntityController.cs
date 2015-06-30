@@ -12,9 +12,9 @@ namespace ADB.SA.Reports.WebAPI.Controllers
         //
         // GET: /Entity/
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return Json(new Programmer() { Name ="Valiant Dudan", Language = "C#" }, JsonRequestBehavior.AllowGet);
+            return View();
         }
 
     }

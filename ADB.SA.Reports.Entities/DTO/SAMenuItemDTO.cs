@@ -15,7 +15,7 @@ namespace ADB.SA.Reports.Entities.DTO
         /// </summary>
         public SAMenuItemDTO()
         {
-            ChildItems = new Dictionary<int, string>();
+            ChildItems = new List<SAMenuItemDTO>();
         }
 
         /// <summary>
@@ -31,6 +31,6 @@ namespace ADB.SA.Reports.Entities.DTO
         /// <summary>
         /// List of child items.
         /// </summary>
-        public Dictionary<int, string> ChildItems { get; set; }
+        public List<SAMenuItemDTO> ChildItems { get; set; }
     }
 }
