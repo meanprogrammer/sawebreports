@@ -40,6 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -65,9 +69,6 @@
     <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <Private>True</Private>
@@ -166,6 +167,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -292,6 +294,28 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ADB.SA.Reports.Configuration\ADB.SA.Reports.Configuration.csproj">
+      <Project>{747eb7fc-22eb-4a7e-9816-30bb9b610278}</Project>
+      <Name>ADB.SA.Reports.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADB.SA.Reports.Data\ADB.SA.Reports.Data.csproj">
+      <Project>{b2e6f3d6-66bb-423c-9d97-5335ab46cca2}</Project>
+      <Name>ADB.SA.Reports.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADB.SA.Reports.Entities\ADB.SA.Reports.Entities.csproj">
+      <Project>{49b8dda3-7903-4c10-b678-7b90d7936c48}</Project>
+      <Name>ADB.SA.Reports.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADB.SA.Reports.Global\ADB.SA.Reports.Global.csproj">
+      <Project>{7438a5f8-7e3c-47d0-aca4-67a791605ebb}</Project>
+      <Name>ADB.SA.Reports.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADB.SA.Reports.Utilities\ADB.SA.Reports.Utilities.csproj">
+      <Project>{a6901a0f-9f40-41a5-a65e-46391ed1fecc}</Project>
+      <Name>ADB.SA.Reports.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -310,7 +334,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64043</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:64043/</IISUrl>
+          <IISUrl>http://localhost:64043/api/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

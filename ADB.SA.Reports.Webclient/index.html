@@ -1,9 +1,97 @@
 ﻿<!DOCTYPE html>
 <html ng-app="saApp">
 <head>
-    <title></title>
+    <link rel="Stylesheet" type="text/css" href="Content/styles.css" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="SHORTCUT ICON" href="favicon.ico" type="image/ico" />
+    <title>
+        Hello
+    </title>
+    <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-resource.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    
+    <script src="app/indexApp.js"></script>
+    <script src="ctrls/nav.js"></script>
+    <script src="services/saResourceService.js"></script>
 </head>
 <body>
-    <h3>Hello World</h3>
+    <form id="form1">
+        <div id="main" class="clearfix">
+            <div class="row clearfix">
+                <div class="col-md-8">
+                    <img class="adb-logo" alt="" src="images/ADB-LOGO.jpg" height="40" width="40" /><span class="app-title">Business Process Model</span>
+                </div>
+                <div class="col-md-4 vertical-middle horizontal-right">
+                    <input id="searchtext" class="form-control input-md show-inline" name="searchtext"
+                           type="text" />
+                    <a id="searchbutton" class="btn btn-success btn-md" name="searchbutton" style="margin-top: -3px;">
+                        <span class="glyphicon glyphicon-search"></span>Search
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <img src="images/faded-line.png" class="center-block" style="margin-top: 10px;" />
+            </div>
+            <div class="row">
+                <div id="header" class="col-md-12">
+                    <div ng-include src="'shared/nav/nav.html'"></div>
+                </div>
+            </div>
+            <div style="height: 10px; width: 100%; background-color: #ed9400; background-image: url('images/bg.png');
+            background-repeat: repeat-x;">
+            </div>
+            <div class="row">
+                <div class="col-md-6" id="caption-left">
+                </div>
+                <div class="col-md-6 horizontal-right" style="margin-top: 5px;">
+                    <a class="btn btn-default btn-sm" title="<%=ADB.SA.Reports.Global.GlobalStringResource.Home %>"
+                       href="Default.aspx"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a>
+                    <a class="btn btn-default btn-sm" href="ImpactAnalysisReport.aspx">
+                        <span class="glyphicon glyphicon-th-list">
+                        </span>&nbsp;Impact Analysis
+                    </a> <a class="btn btn-default btn-sm" title="<%=ADB.SA.Reports.Global.GlobalStringResource.GenerateReport %>"
+                            onclick="return generateReport();">
+                        <span class="glyphicon glyphicon-file"></span>
+                        &nbsp;Generate Report
+                    </a>
+                </div>
+            </div>
+            <div id="breadcrumb-placeholder" class="no-margin-bottom">
+            </div>
+            <div id="content" class="clearfix">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <!-- GENERAL MODAL -->
+            <div class="modal fade" id="detail-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            </div>
+            <!-- GENERAL MODAL -->
+            <!-- LOADER -->
+            <div id="ajax-loader" class="modal">
+                <div class="modal-dialog" style="width: 450px; top: 30%;">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="progress progress-striped active" style="width: 400px;">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100"
+                                     aria-valuemin="100" aria-valuemax="100" style="width: 100%">
+                                </div>
+                            </div>
+                            <h3>
+                                Loading ...
+                            </h3>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- LOADER -->
+        </div>
+    </form>
 </body>
 </html>
