@@ -37,7 +37,7 @@ namespace ADB.SA.Reports.Presenter
 
             AsIsData asIsData = new AsIsData();
             EntityData entityData = new EntityData();
-            Dictionary<string, List<AsIsItemEntity>> sectionList = asIsData.GetSections();
+            Dictionary<string, List<AsIsItemEntity>> sectionList = null; // asIsData.GetSections();
 
             StringBuilder html = new StringBuilder();
 

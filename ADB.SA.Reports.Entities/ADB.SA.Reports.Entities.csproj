@@ -67,6 +67,7 @@
     <Compile Include="DTO\Detail\ReviewerApproverPositionDetailDTO.cs" />
     <Compile Include="DTO\Detail\RoleDetailDTO.cs" />
     <Compile Include="DTO\Detail\SectionNameDetailDTO.cs" />
+    <Compile Include="DTO\HomeDiagramContentDTO.cs" />
     <Compile Include="DTO\Response\BreadCrumbItemDTO.cs" />
     <Compile Include="DTO\CommentAttachment.cs" />
     <Compile Include="DTO\CommentDTO.cs" />

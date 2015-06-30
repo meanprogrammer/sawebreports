@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
@@ -27,7 +28,7 @@ namespace ADB.SA.Reports.WebAPI
 
             config.Formatters.Clear();
             config.Formatters.Add(new JsonMediaTypeFormatter());
-
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             config.EnableSystemDiagnosticsTracing();
         }
     }

@@ -9,8 +9,8 @@ namespace ADB.SA.Reports.Entities.DTO
 {
     public class HomePageContentDTO
     {
-        public Dictionary<string, List<AsIsItemEntity>> SectionList { get; set; }
-        public AsIsDiagramSection DiagramSection { get; set; }
+        public List<HomeDiagramItemDTO> SectionList { get; set; }
+        public HomeDiagramContentDTO DiagramSection { get; set; }
         public string LeftGroupName { get; set; }
         public string LeftGroupCssClass { get; set; }
         public string RightGroupName { get; set; }

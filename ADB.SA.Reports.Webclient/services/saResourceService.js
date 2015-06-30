@@ -16,6 +16,13 @@ angular.module('saResourceService', ['ngResource'])
 		function ($resource) {
 		    return $resource('/api/Menu',
 					{}, {
-					    get: { method: 'GET' , isArray: true }
+					    get: { method: 'GET', isArray: true }
+					});
+		}).factory(
+		'HomeService',
+		function ($resource) {
+		    return $resource('/api/Home',
+					{}, {
+					    get: { method: 'GET', isArray: false }
 					});
 		});

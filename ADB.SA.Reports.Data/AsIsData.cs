@@ -32,17 +32,20 @@ namespace ADB.SA.Reports.Data
         /// 
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, List<AsIsItemEntity>> GetSections()
+        public List<HomeDiagramItemDTO> GetSections()
         {
             IDataReader reader = db.ExecuteReader(
                                                 CommandType.Text,
                                                 GlobalStringResource.AsisData_GetSections);
-            Dictionary<string, List<AsIsItemEntity>> sections = 
-                            new Dictionary<string, List<AsIsItemEntity>>();
+            List<HomeDiagramItemDTO> sections =
+                            new List<HomeDiagramItemDTO>();
 
             while (reader.Read())
             {
-                sections.Add(reader.GetString(0), new List<AsIsItemEntity>());
+                sections.Add(new HomeDiagramItemDTO() { 
+                    Key= reader.GetString(0),
+                    ChildItems = new List<AsIsItemEntity>()
+                });
             }
 
             reader.Close();

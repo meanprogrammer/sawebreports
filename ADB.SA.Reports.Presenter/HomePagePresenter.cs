@@ -37,7 +37,7 @@ namespace ADB.SA.Reports.Presenter
 
             AsIsData asIsData = new AsIsData();
             EntityData entityData = new EntityData();
-            Dictionary<string, List<AsIsItemEntity>> sectionList = asIsData.GetSections();
+            Dictionary<string, List<AsIsItemEntity>> sectionList = null; // asIsData.GetSections();
 
             //StringBuilder html = new StringBuilder();
 
@@ -114,8 +114,8 @@ namespace ADB.SA.Reports.Presenter
             AsIsDiagramSection diagrams = AsIsDiagramSection.GetConfig();
 
             HomePageContentDTO home = new HomePageContentDTO();
-            home.DiagramSection = diagrams;
-            home.SectionList = sectionList;
+            //home.DiagramSection = ;
+            home.SectionList = null; // sectionList;
 
             home.LeftGroupName = diagrams.LeftGroup.Name;
             home.LeftGroupCssClass = diagrams.LeftGroup.CssClass;
