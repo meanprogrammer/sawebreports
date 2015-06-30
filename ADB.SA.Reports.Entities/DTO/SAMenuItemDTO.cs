@@ -28,6 +28,7 @@ namespace ADB.SA.Reports.Entities.DTO
         /// </summary>
         public string Text { get; set; }
 
+
         /// <summary>
         /// List of child items.
         /// </summary>

@@ -1,5 +1,5 @@
 ﻿<div>
-    <h1>Home</h1>   
+    <h3>{{homeData.Title}}</h3>
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-primary">
@@ -9,18 +9,18 @@
                 <div class="panel-body">
                     <div class="panel panel-default" ng-repeat="left in homeData.DiagramSection.LeftGroup">
                         <div class="panel-heading panel-heading-override">
-                           {{left.Name}}
+                            {{left.Name}}
                         </div>
                         <div class="panel-body">
-                            
+
                             <div ng-repeat="section in homeData.SectionList" ng-if="section.Key == left.Name">
 
                                 <!--
-                                        if (diagrams.length == 0) {
-                cursor = 'default !important';
-            } else {
-                cursor = 'pointer !important';
-                                -->
+                                                            if (diagrams.length == 0) {
+                                    cursor = 'default !important';
+                                } else {
+                                    cursor = 'pointer !important';
+                                                    -->
 
                                 <div ng-repeat="item in section.ChildItems" class="square-well" style="background-color:{{item.BoxColor == '' ? left.CssClass : item.BoxColor}};cursor:{{item.DiagramDTO.length == 0 ? 'default !important' : 'pointer !important'}};">
                                     <div ng-if="item.DiagramDTO.length == 0"><p style="color:{{item.FontColor}};">{{item.DefinitionDTO.Name}}</p></div>
@@ -74,5 +74,6 @@
                 </div>
             </div>
         </div>
-    <input id="reportId" type="hidden" value="{{homeData.CurrentID}}">
+        <input id="reportId" type="hidden" value="{{homeData.CurrentID}}">
+    </div>
 </div>
