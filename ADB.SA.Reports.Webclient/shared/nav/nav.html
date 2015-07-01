@@ -5,7 +5,7 @@
                 <li ng-repeat="n in nav" class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop1">{{n.Text}} &nbsp;<b class="caret"></b></a>
                     <ul aria-labelledby="drop1" role="menu" class="dropdown-menu menu-suppress">
                         <li role="presentation" ng-repeat="inner in n.ChildItems">
-                        <a title="Strategy 2020" href="#/Entity/{{inner.ID}}" tabindex="-1" role="menuitem">{{inner.Text}}</a></li>
+                        <a title="Strategy 2020" href="/index/{{inner.ID}}" tabindex="-1" role="menuitem">{{inner.Text}}</a></li>
                     </ul>
                 </li>
             </ul>
