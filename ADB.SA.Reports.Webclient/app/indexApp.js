@@ -3,7 +3,7 @@
         $routeProvider.
             when('/', { templateUrl: 'html/home.html', controller: 'HomeCtrl' }).
             when('/index', { templateUrl: 'html/home.html', controller: 'HomeCtrl' }).
-            when('/index/:recordId', { templateUrl: 'html/process.html', controller: 'IndexCtrl' }).
+            when('/index/:recordId', { templateUrl: 'html/indexContent.html', controller: 'IndexCtrl' }).
             when('/impactanalysis', { templateUrl: 'html/impactanalysis.html', controller: 'ImpactAnalysisCtrl' })
         .otherwise({ redirectTo: '/index' });
         $locationProvider.html5Mode(true);
