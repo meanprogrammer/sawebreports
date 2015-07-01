@@ -25,4 +25,11 @@ angular.module('saResourceService', ['ngResource'])
 					{}, {
 					    get: { method: 'GET', isArray: false }
 					});
+		}).factory(
+		'EntityService',
+		function ($resource) {
+		    return $resource('/api/Index/:recordId',
+					{}, {
+					    get: { method: 'GET', isArray: false }
+					});
 		});
