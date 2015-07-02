@@ -2,7 +2,7 @@
 
 angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$routeParams', function ($scope, EntityService, $routeParams) {
     $scope.load = function () {
-        EntityService.get({ recordId: $routeParams.recordId }, function (data) {
+        EntityService.one.get({ recordId: $routeParams.recordId }, function (data) {
             console.log(data);
         });
     };
