@@ -71,7 +71,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="html\home.html" />
     <Content Include="html\impactanalysis.html" />
+    <Content Include="html\indexContent.html" />
     <Content Include="html\process.html" />
+    <Content Include="html\subprocess.html" />
     <Content Include="Icon.png" />
     <Content Include="images\ADB-LOGO.jpg" />
     <Content Include="images\ADB_Logo.gif" />

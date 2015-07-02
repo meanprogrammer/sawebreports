@@ -1,8 +1,10 @@
 ﻿var app = angular.module('saApp', ['saResourceService', 'ngRoute', 'ui.bootstrap', 'ui.bootstrap.tpls']).
-    config(['$routeProvider', function ($routeProvider) {
+    config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider.
             when('/', { templateUrl: 'html/home.html', controller: 'HomeCtrl' }).
-            when('/Entity/:recordId', { templateUrl: 'html/process.html', controller: 'IndexCtrl' }).
+            when('/index', { templateUrl: 'html/home.html', controller: 'HomeCtrl' }).
+            when('/index/:recordId', { templateUrl: 'html/indexContent.html', controller: 'IndexCtrl' }).
             when('/impactanalysis', { templateUrl: 'html/impactanalysis.html', controller: 'ImpactAnalysisCtrl' })
-        .otherwise({ redirectTo: '/' });
+        .otherwise({ redirectTo: '/index' });
+        $locationProvider.html5Mode(true);
     }]);

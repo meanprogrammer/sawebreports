@@ -1,18 +1,7 @@
 ﻿'use strict';
 
 angular.module('saResourceService', ['ngResource'])
-	   .factory('EntityService', function ($resource) {
-	        return {
-
-	            one: $resource('/api/Index/:recordId', {}, {
-	                get: {
-	                    method: 'GET',
-	                    isArray: false
-	                }
-	            })
-	        };
-	    })
-    .factory(
+	   .factory(
 		'MenuService',
 		function ($resource) {
 		    return $resource('/api/Menu',
@@ -23,6 +12,13 @@ angular.module('saResourceService', ['ngResource'])
 		'HomeService',
 		function ($resource) {
 		    return $resource('/api/Home',
+					{}, {
+					    get: { method: 'GET', isArray: false }
+					});
+		}).factory(
+		'EntityService',
+		function ($resource) {
+		    return $resource('/api/Index/Index/:recordId',
 					{}, {
 					    get: { method: 'GET', isArray: false }
 					});
