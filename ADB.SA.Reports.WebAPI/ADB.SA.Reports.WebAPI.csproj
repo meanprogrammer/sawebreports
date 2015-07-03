@@ -291,6 +291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Diagrams\wmf_temp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -311,6 +312,10 @@
     <ProjectReference Include="..\ADB.SA.Reports.Global\ADB.SA.Reports.Global.csproj">
       <Project>{7438a5f8-7e3c-47d0-aca4-67a791605ebb}</Project>
       <Name>ADB.SA.Reports.Global</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADB.SA.Reports.Presenter\ADB.SA.Reports.Presenter.csproj">
+      <Project>{9915b3c1-3846-44d5-a4ba-c07c8b4a89a1}</Project>
+      <Name>ADB.SA.Reports.Presenter</Name>
     </ProjectReference>
     <ProjectReference Include="..\ADB.SA.Reports.Utilities\ADB.SA.Reports.Utilities.csproj">
       <Project>{a6901a0f-9f40-41a5-a65e-46391ed1fecc}</Project>

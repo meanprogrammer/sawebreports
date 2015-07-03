@@ -1,1 +1,245 @@
-﻿<h3>Sub Process</h3>
+﻿<h3>sub process</h3>
+
+<ul class="nav nav-tabs" id="content-tab">
+    <li><a href="#diagram" data-toggle="tab">Diagram</a></li>
+    <li><a href="#processdesc" data-toggle="tab">Process</a></li>
+    <li><a href="#subprocdesc" data-toggle="tab">Sub-Process Desc.</a></li>
+    {{#greaterthanzero RolesAndResponsibilities.length}}
+    <li><a href="#rolesresp" data-toggle="tab">Roles and Resp.</a></li>
+    {{/greaterthanzero}}
+    {{#greaterthanzero Dependencies.length}}
+    <li><a href="#dependencies" data-toggle="tab">Sub-Process Dependencies</a></li>
+    {{/greaterthanzero}}
+    {{#greaterthanzero ActivityOverviews.length}}
+    <li><a href="#actoverview" data-toggle="tab">Activity Overview</a></li>
+    {{/greaterthanzero}}
+    {{#greaterthanzero ModuleRelationships.length}}
+    <li><a href="#modrep" data-toggle="tab">Module Relationship</a></li>
+    {{/greaterthanzero}}
+    {{#greaterthanzero BusinessRuleMappings.length}}
+    <li><a href="#busrulemap" data-toggle="tab">Business Rule Mapping</a></li>
+    {{/greaterthanzero}}
+    {{#greaterthanzero ChangeHistories.length}}
+    <li><a href="#changehis" data-toggle="tab">Change History</a></li>
+    {{/greaterthanzero}}
+    <li><a href="#comments" data-toggle="tab">Comments</a></li>
+</ul>
+<div class="tab-content top-margin-10">
+    {{#if ShowResize}}
+    <div class="row">
+        <div class="col-md-3">
+            <input id="newpercentage2" type="text" class="form-control input-sm show-inline" style="width:100px;" />
+            <input id="gopercentage2" name="gopercentage2" class="btn btn-primary btn-sm" onclick="dochangepercent2();" type="button" value="Proceed" />
+        </div>
+        <div class="col-md-9">
+        </div>
+    </div>
+    {{/if}}
+    <!-- Diagram -->
+    <div class="tab-pane" id="diagram">
+        <div class="diagram-containter">
+            <img src="{{Diagram.DiagramPath}}" class="center-block" />
+        </div>
+    </div>
+    <!-- Diagram -->
+    <!-- Process Description -->
+    <div class="tab-pane" id="processdesc">
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td width="15%">Process Name</td>
+                <td width="85%">Description</td>
+            </tr>
+            <tr>
+                <td>{{{ProcessDescription.ProcessName}}}</td>
+                <td>{{{ProcessDescription.Description}}}</td>
+            </tr>
+        </table>
+    </div>
+    <!-- Process Description -->
+    <!-- Sub Process Description -->
+    <div class="tab-pane" id="subprocdesc">
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="100%" colspan="2">&nbsp;</th>
+            </tr>
+            <tr>
+                <td width="20%">Objective</td>
+                <td width="80%">{{{SubProcessDescription.Objective}}}</td>
+            </tr>
+            <tr>
+                <td>Document Owner(s)</td>
+                <td>{{{SubProcessDescription.DocumentOwners}}}</td>
+            </tr>
+            <tr>
+                <td>Framework Reference</td>
+                <td>{{{SubProcessDescription.FrameworkReference}}}</td>
+            </tr>
+            <tr>
+                <td>Internal Reference</td>
+                <td>{{{SubProcessDescription.InternalReference}}}</td>
+            </tr>
+        </table>
+    </div>
+    <!-- Sub Process Description -->
+    <!-- Roles and Responsibilities -->
+    {{#greaterthanzero RolesAndResponsibilities.length}}
+    <div class="tab-pane" id="rolesresp">
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="20%">Role</th>
+                <th width="80%">Responsibilities</th>
+            </tr>
+            {{#each RolesAndResponsibilities}}
+            <tr>
+                <td>{{{Role}}}</td>
+                <td>{{{Responsibilities}}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/greaterthanzero}}
+    <!-- Roles and Responsibilities -->
+    <!-- Sub Process Dependencies -->
+    {{#greaterthanzero Dependencies.length}}
+    <div class="tab-pane" id="dependencies">
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="15%">Preceding / Succeeding</th>
+                <th width="30%">From Sub-Process</th>
+                <th width="30%">To Sub-Process</th>
+                <th width="25%">	Integration Objectives</th>
+            </tr>
+            {{#each Dependencies}}
+            <tr>
+                <td>{{{Order}}}</td>
+                <td>{{{From}}}</td>
+                <td>{{{To}}}</td>
+                <td>{{{Objective}}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/greaterthanzero}}
+    <!-- Sub Process Dependencies -->
+    <!-- Activity Overview -->
+    {{#greaterthanzero ActivityOverviews.length}}
+    <div class="tab-pane" id="actoverview">
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="20%">Activity</th>
+                <th width="10%">User</th>
+                <th width="30%">Trigger/Input</th>
+                <th width="10%">Output</th>
+                <th width="10%">Key Documents</th>
+                <th width="10%">Systems Information</th>
+                <th width="10%">Memo</th>
+            </tr>
+            {{#each ActivityOverviews}}
+            <tr>
+                <td>{{{Activity}}}</td>
+                <td>{{{User}}}</td>
+                <td>{{{Trigger}}}</td>
+                <td>{{{Output}}}</td>
+                <td>{{{keyDocs}}}</td>
+                <td>{{{SystemsInfo}}}</td>
+                <td>{{{Memo}}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/greaterthanzero}}
+    <!-- Activity Overview -->
+    <!-- Module Relationship -->
+    {{#greaterthanzero ModuleRelationships.length}}
+    <div class="tab-pane" id="modrep">
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="20%">Module</th>
+                <th width="80%">Description</th>
+            </tr>
+            {{#each ModuleRelationships}}
+            <tr>
+                <td>{{{Module}}}</td>
+                <td>{{{Description}}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/greaterthanzero}}
+    <!-- Module Relationship -->
+    <!-- Business Rule Mappings -->
+    {{#greaterthanzero BusinessRuleMappings.length}}
+    <div class="tab-pane" id="busrulemap">
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="40%">Activity</th>
+                <th width="10%">Paragraph Name</th>
+                <th width="50%">Paragraph Reference</th>
+            </tr>
+            {{#each BusinessRuleMappings}}
+            {{#isonecount Activity.Paragraphs}}
+            <tr>
+                <td rowspan="{{Activity.RowSpan}}">{{{Activity.Activity}}}</td>
+                {{#each Activity.Paragraphs}}
+                <td>{{{ParagraphName}}}</td>
+                <td>{{{ParagraphReference}}}</td>
+                {{/each}}
+            </tr>
+            {{/isonecount}}
+            {{#greaterthanonecount Activity.Paragraphs}}
+            <tr>
+                {{#each Activity.Paragraphs}}
+                {{#indexiszero @index}}
+                <td rowspan="{{../../Activity.RowSpan}}">{{{../../Activity.Activity}}}</td>
+                {{/indexiszero}}
+                <td>{{{ParagraphName}}}</td>
+                <td>{{{ParagraphReference}}}</td>
+            </tr>
+            <tr>
+                {{/each}}
+            </tr>
+            {{/greaterthanonecount}}
+            {{/each}}
+        </table>
+    </div>
+    {{/greaterthanzero}}
+    <!-- Business Rule Mappings -->
+    <!-- Change History -->
+    {{#greaterthanzero ChangeHistories.length}}
+    <div class="tab-pane" id="changehis">
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="5%">Version</th>
+                <th width="10%">Date</th>
+                <th width="70%">Reason for Change</th>
+                <th width="15%">Author</th>
+            </tr>
+            {{#each ChangeHistories}}
+            <tr>
+                <td>{{{Version}}}</td>
+                <td>{{{Date}}}</td>
+                <td>{{{Reason}}}</td>
+                <td>{{{Author}}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/greaterthanzero}}
+    <!-- Change History -->
+    <!-- Comments -->
+    <div class="tab-pane" id="comments" style="margin:0px 15px 0px 15px;">
+        <iframe src="CommentPage.aspx?id={{CurrentID}}" seamless="seamless" frameborder="0" id="myif" style="width:100%;height:340px;"></iframe>
+        <div id="comments-container">
+        </div>
+    </div>
+    <!-- Comments -->
+</div>
+<input id="reportId" type="hidden" value="{{CurrentID}}">
