@@ -16,6 +16,7 @@ namespace ADB.SA.Reports.Entities.DTO
         public List<ModuleRelationshipItem> ModuleRelationships { get; set; }
         public List<BusinessRuleMappingSPItem> BusinessRuleMappings { get; set; }
         public List<ChangeHistoryItem> ChangeHistories { get; set; }
+        public int DiagramType { get; set; }
         public int CurrentID { get; set; }
         public bool ShowResize { get; set; }
     }

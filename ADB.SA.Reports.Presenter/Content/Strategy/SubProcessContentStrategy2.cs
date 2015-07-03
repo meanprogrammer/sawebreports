@@ -30,6 +30,7 @@ namespace ADB.SA.Reports.Presenter.Content
             sp.Diagram = new DiagramContent() {
                 DiagramPath = BuildDiagramContent(dto)
             };
+            sp.DiagramType = dto.Type;
             sp.ProcessDescription = ParentProcessDescription(id);
             sp.SubProcessDescription = SubProcessDescription(dto);
             sp.RolesAndResponsibilities = RolesAndResponsibilities(id);
@@ -40,6 +41,7 @@ namespace ADB.SA.Reports.Presenter.Content
             sp.ChangeHistories = ChangeHistory(id);
             sp.CurrentID = id;
             sp.ShowResize = ShowResize();
+            
             return sp;
         }
 

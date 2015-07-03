@@ -3,9 +3,10 @@
 angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$routeParams', function ($scope, EntityService, $routeParams) {
     $scope.load = function () {
         EntityService.get({ recordId: $routeParams.recordId }, function (data) {
-            console.log(data);
             $scope.data = data;
-            $scope.templateUrl = $scope.getCorrectTemplate(data.Type);
+            console.log(data);
+            $scope.templateUrl = $scope.getCorrectTemplate(data.Content.DiagramType);
+            console.log($scope.templateUrl);
         });
     };
 
