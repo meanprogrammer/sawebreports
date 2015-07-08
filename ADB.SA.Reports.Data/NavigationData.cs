@@ -104,7 +104,7 @@ namespace ADB.SA.Reports.Data
                 int id = reader.GetInt32(idIndex);
                 string name = reader.GetString(nameIndex);
 
-                EntityDTO dto = data.GetOneEntity(id);
+                //EntityDTO dto = data.GetOneEntity(id);
 
 
                 if (SAModeHelper.IsValidForCurrentMode(id)) // && (dto != null && dto.Publish == true))

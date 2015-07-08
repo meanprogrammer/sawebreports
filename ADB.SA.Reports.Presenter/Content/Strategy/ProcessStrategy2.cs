@@ -53,6 +53,7 @@ namespace ADB.SA.Reports.Presenter.Content
                 RelatedProcess = GetRelatedProcess(entity),
                 RelatedSubProcess = GetRelatedSubProcess(entity)
             };
+            process.DiagramType = entity.Type;
             process.Description = ProcessDescription(entity);
             process.ProcessRelations = ProcessRelation(id);
             process.SubProcessRelations = SubProcessRelation(id);

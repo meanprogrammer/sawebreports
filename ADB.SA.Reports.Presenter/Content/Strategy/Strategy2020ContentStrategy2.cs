@@ -25,6 +25,7 @@ namespace ADB.SA.Reports.Presenter.Content
             st2020.Diagram = new DiagramContent() { 
                 DiagramPath = base.BuildDiagramContent(dto)
             };
+            st2020.DiagramType = dto.Type;
             st2020.DiagramDescription = DiagramDescription(dto);
             st2020.Challenges = Challenges(id);
             st2020.StrategicAgendas = StrategicAgenda(id);

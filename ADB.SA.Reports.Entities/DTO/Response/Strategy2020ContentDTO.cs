@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ADB.SA.Reports.Entities.DTO
 {
-    public class Strategy2020ContentDTO : IResizeDiagram
+    public class Strategy2020ContentDTO : IResizeDiagram, IDiagramType
     {
         public DiagramContent Diagram { get; set; }
         public string DiagramDescription { get; set; }
@@ -25,6 +25,7 @@ namespace ADB.SA.Reports.Entities.DTO
             get;
             set;
         }
+        public int DiagramType { get; set; }
     }
 
     public class ChallengeItem

@@ -6,5 +6,5 @@
             when('/index/:recordId', { templateUrl: 'html/indexContent.html', controller: 'IndexCtrl' }).
             when('/impactanalysis', { templateUrl: 'html/impactanalysis.html', controller: 'ImpactAnalysisCtrl' })
         .otherwise({ redirectTo: '/index' });
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
     }]);

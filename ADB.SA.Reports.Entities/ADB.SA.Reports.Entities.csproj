@@ -80,6 +80,7 @@
     <Compile Include="DTO\Response\GenericContentDTO.cs" />
     <Compile Include="DTO\Response\HomePageContentDTO.cs" />
     <Compile Include="DTO\PageResponseDTO.cs" />
+    <Compile Include="DTO\Response\IDiagramType.cs" />
     <Compile Include="DTO\Response\IResizeDiagram.cs" />
     <Compile Include="DTO\Response\ProcessContentDTO.cs" />
     <Compile Include="DTO\ProcessPageResponseDTO.cs" />

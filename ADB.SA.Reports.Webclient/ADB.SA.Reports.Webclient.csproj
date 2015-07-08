@@ -69,10 +69,12 @@
     <Content Include="ctrls\index.js" />
     <Content Include="ctrls\nav.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="html\generic.html" />
     <Content Include="html\home.html" />
     <Content Include="html\impactanalysis.html" />
     <Content Include="html\indexContent.html" />
     <Content Include="html\process.html" />
+    <Content Include="html\strategy2020.html" />
     <Content Include="html\subprocess.html" />
     <Content Include="Icon.png" />
     <Content Include="images\ADB-LOGO.jpg" />
