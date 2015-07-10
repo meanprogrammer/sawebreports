@@ -1,1 +1,141 @@
 ﻿<h3>{{data.Header}}</h3>
+<tabset>
+    <tab heading="Diagram">
+        <div class="diagram-containter">
+            <img src="/api/{{data.Content.Diagram.DiagramPath}}" class="center-block" />
+        </div>
+    </tab>
+    <tab heading="Diagram Desc.">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td>{{data.Content.DiagramDescription}}</td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Challenges">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="50%">Challenge</th>
+                <th width="50%">Description</th>
+            </tr>
+            <tr ng-repeat="ch in data.Content.Challenges">
+                <td>{{ch.Challenge}}</td>
+                <td>{{ch.Description}}</td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Strategic Agenda">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="50%">Strategic Agenda</th>
+                <th width="50%">Description</th>
+            </tr>
+            <tr ng-repeat="sa in data.Content.StrategicAgendas">
+                <td>{{sa.StrategicAgenda}}</td>
+                <td>{{sa.Description}}</td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Drivers of Change">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="50%">Strategic Agenda</th>
+                <th width="50%">Description</th>
+            </tr>
+            <tr ng-repeat="doc in data.Content.DriversOfChange">
+                <td>{{doc.DriversOfChange}}</td>
+                <td>{{doc.Description}}</td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Developing Partner Countries">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="50%">Developing Partner Countries</th>
+                <th width="50%">Description</th>
+            </tr>
+            <tr ng-repeat="dpc in data.Content.DevelopingPartners">
+                <td>{{dpc.DevelopingPartnerCountries}}</td>
+                <td>{{dpc.Description}}</td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Core Operation Area">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="50%">Core Areas of Operation</th>
+                <th width="50%">Description</th>
+            </tr>
+            <tr ng-repeat="ca in data.Content.CoreAreas">
+                <td>{{ca.CoreAreasOfOperation}}</td>
+                <td>{{ca.Description}}</td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Other Operation Area">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="50%">Other Areas of Operation</th>
+                <th width="50%">Description</th>
+            </tr>
+            <tr ng-repeat="oa in data.Content.OtherAreas">
+                <td>{{oa.OtherAreasOfOperation}}</td>
+                <td>{{oa.Description}}</td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Corporate Values">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="50%">Corporate Values</th>
+                <th width="50%">Description</th>
+            </tr>
+            <tr ng-repeat="cv in data.Content.CorporateValues">
+                <td>{{cv.CorporateValues}}</td>
+                <td>{{cv.Description}}</td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Operational Goals">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="50%">Operational Goals</th>
+                <th width="50%">Description</th>
+            </tr>
+            <tr ng-repeat="og in data.Content.OperationalGoals">
+                <td>{{og.OperationalGoals}}</td>
+                <td>{{og.Description}}</td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Institutional Goals">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="50%">Institutional Goals</th>
+                <th width="50%">Description</th>
+            </tr>
+            <tr ng-repeat="ig in data.Content.InstitutionalGoals">
+                <td>{{ig.InstitutionalGoals}}</td>
+                <td>{{ig.Description}}</td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Result Framework Level">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="50%">Result Framework Level</th>
+                <th width="50%">Description</th>
+            </tr>
+            <tr ng-repeat="rf in data.Content.ResultFrameworks">
+                <td>{{rf.ResultFrameworkLevel}}</td>
+                <td>{{rf.Description}}</td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Comments">
+        <!--<iframe src="CommentPage.aspx?id={{data.CurrentID}}" seamless="seamless" frameborder="0" id="myif" style="width:100%;height:340px;"></iframe>-->
+        <div id="comments-container">
+        </div>
+    </tab>
+</tabset>
+<input id="reportId" type="hidden" value="{{data.CurrentID}}">
