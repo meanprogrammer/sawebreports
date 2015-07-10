@@ -1,1 +1,140 @@
 ﻿<h3>{{data.Header}}</h3>
+<tabset>
+    <tab heading="Diagram">
+        <div class="diagram-containter">
+            <img src="/api/{{data.Content.Diagram.DiagramPath}}" class="center-block" />
+        </div>
+    </tab>
+    <tab heading="Process">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td width="15%">Process Name</td>
+                <td width="85%">Description</td>
+            </tr>
+            <tr>
+                <td><div ng-bind-html="data.Content.ProcessDescription.ProcessName"></div></td>
+                <td><div ng-bind-html="data.Content.ProcessDescription.Description"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Sub-Process Desc.">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="100%" colspan="2">&nbsp;</th>
+            </tr>
+            <tr>
+                <td width="20%">Objective</td>
+                <td width="80%"><div ng-bind-html="data.Content.SubProcessDescription.Objective"></div></td>
+            </tr>
+            <tr>
+                <td>Document Owner(s)</td>
+                <td><div ng-bind-html="data.Content.SubProcessDescription.DocumentOwners"></div></td>
+            </tr>
+            <tr>
+                <td>Framework Reference</td>
+                <td><div ng-bind-html="data.Content.SubProcessDescription.FrameworkReference"></div></td>
+            </tr>
+            <tr>
+                <td>Internal Reference</td>
+                <td><div ng-bind-html="data.Content.SubProcessDescription.InternalReference"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Roles and Resp." ng-if="data.Content.RolesAndResponsibilities.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="20%">Role</th>
+                <th width="80%">Responsibilities</th>
+            </tr>
+            <tr ng-repeat="rr in data.Content.RolesAndResponsibilities">
+                <td>{{rr.Role}}</td>
+                <td><div ng-bind-html="rr.Responsibilities"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Sub-Process Dependencies" ng-if="data.Content.Dependencies.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="15%">Preceding / Succeeding</th>
+                <th width="30%">From Sub-Process</th>
+                <th width="30%">To Sub-Process</th>
+                <th width="25%">Integration Objectives</th>
+            </tr>
+            <tr ng-repeat="d in data.Content.Dependencies">
+                <td><div ng-bind-html="d.Order"></div></td>
+                <td><div ng-bind-html="d.From"></div></td>
+                <td><div ng-bind-html="d.To"></div></td>
+                <td><div ng-bind-html="d.Objective"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Activity Overview" ng-if="data.Content.ActivityOverviews.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="20%">Activity</th>
+                <th width="10%">User</th>
+                <th width="30%">Trigger/Input</th>
+                <th width="10%">Output</th>
+                <th width="10%">Key Documents</th>
+                <th width="10%">Systems Information</th>
+                <th width="10%">Memo</th>
+            </tr>
+            <tr ng-repeat="ao in data.Content.ActivityOverviews">
+                <td><div ng-bind-html="ao.Activity"></div></td>
+                <td><div ng-bind-html="ao.User"></div></td>
+                <td><div ng-bind-html="ao.Trigger"></div></td>
+                <td><div ng-bind-html="ao.Output"></div></td>
+                <td><div ng-bind-html="ao.keyDocs"></div></td>
+                <td><div ng-bind-html="ao.SystemsInfo"></div></td>
+                <td><div ng-bind-html="ao.Memo"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Module Relationship" ng-if="data.Content.ModuleRelationships.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="20%">Module</th>
+                <th width="80%">Description</th>
+            </tr>
+            <tr ng-repeat="mr in data.Content.ModuleRelationships">
+                <td><div ng-bind-html="mr.Module"></div></td>
+                <td><div ng-bind-html="mr.Description"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Business Rule Mapping" ng-if="data.Content.BusinessRuleMappings.length > 0">
+        <table class="table table-bordered table-striped">
+                <tr>
+                    <th width="40%">Activity</th>
+                    <th width="10%">Paragraph Name</th>
+                    <th width="50%">Paragraph Reference</th>
+                </tr>
+                {{#each BusinessRuleMappings}}
+                    {{#isonecount Activity.Paragraphs}}
+                    <tr>
+                        <td rowspan="{{Activity.RowSpan}}">{{{Activity.Activity}}}</td>
+                        {{#each Activity.Paragraphs}}
+                            <td>{{{ParagraphName}}}</td>
+                            <td>{{{ParagraphReference}}}</td>
+                        {{/each}}
+                    </tr>
+                    {{/isonecount}}
+                    {{#greaterthanonecount Activity.Paragraphs}}
+                        <tr>
+                            {{#each Activity.Paragraphs}}
+                                {{#indexiszero @index}}
+                                    <td rowspan="{{../../Activity.RowSpan}}">{{{../../Activity.Activity}}}</td>
+                                {{/indexiszero}}
+                                <td>{{{ParagraphName}}}</td>
+                                <td>{{{ParagraphReference}}}</td>
+                                </tr>
+                                <tr>
+                            {{/each}}
+                        </tr>
+                    {{/greaterthanonecount}}
+                {{/each}}
+            </table>
+    </tab>
+    <tab heading="Change History" ng-if="data.Content.ChangeHistories.length > 0"></tab>
+    <tab heading="Comments"></tab>
+</tabset>
