@@ -109,30 +109,27 @@
                     <th width="10%">Paragraph Name</th>
                     <th width="50%">Paragraph Reference</th>
                 </tr>
-                {{#each BusinessRuleMappings}}
-                    {{#isonecount Activity.Paragraphs}}
-                    <tr>
-                        <td rowspan="{{Activity.RowSpan}}">{{{Activity.Activity}}}</td>
-                        {{#each Activity.Paragraphs}}
-                            <td>{{{ParagraphName}}}</td>
-                            <td>{{{ParagraphReference}}}</td>
-                        {{/each}}
-                    </tr>
-                    {{/isonecount}}
-                    {{#greaterthanonecount Activity.Paragraphs}}
-                        <tr>
-                            {{#each Activity.Paragraphs}}
-                                {{#indexiszero @index}}
-                                    <td rowspan="{{../../Activity.RowSpan}}">{{{../../Activity.Activity}}}</td>
-                                {{/indexiszero}}
-                                <td>{{{ParagraphName}}}</td>
-                                <td>{{{ParagraphReference}}}</td>
-                                </tr>
+
+            <tr ng-repeat="br in data.Content.BusinessRuleMappings" ng-if="data.Content.BusinessRuleMappings.Activity.Paragraphs.length == 1">
+                <td rowspan="{{Activity.RowSpan}}">{{{Activity.Activity}}}</td>
+                {{#each Activity.Paragraphs}}
+                <td>{{{ParagraphName}}}</td>
+                <td>{{{ParagraphReference}}}</td>
+                {{/each}}
+            </tr>
+
+            <tr ng-repeat="br in data.Content.BusinessRuleMappings" ng-if="data.Content.BusinessRuleMappings.Activity.Paragraphs.length > 1">
+                {{#each Activity.Paragraphs}}
+                {{#indexiszero @index}}
+                <td rowspan="{{../../Activity.RowSpan}}">{{{../../Activity.Activity}}}</td>
+                {{/indexiszero}}
+                <td>{{{ParagraphName}}}</td>
+                <td>{{{ParagraphReference}}}</td>
+            </tr>
                                 <tr>
                             {{/each}}
                         </tr>
-                    {{/greaterthanonecount}}
-                {{/each}}
+
             </table>
     </tab>
     <tab heading="Change History" ng-if="data.Content.ChangeHistories.length > 0">
