@@ -135,6 +135,23 @@
                 {{/each}}
             </table>
     </tab>
-    <tab heading="Change History" ng-if="data.Content.ChangeHistories.length > 0"></tab>
+    <tab heading="Change History" ng-if="data.Content.ChangeHistories.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="5%">Version</th>
+                <th width="10%">Date</th>
+                <th width="70%">Reason for Change</th>
+                <th width="15%">Author</th>
+            </tr>
+            {{#each ChangeHistories}}
+            <tr>
+                <td>{{{Version}}}</td>
+                <td>{{{Date}}}</td>
+                <td>{{{Reason}}}</td>
+                <td>{{{Author}}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </tab>
     <tab heading="Comments"></tab>
 </tabset>
