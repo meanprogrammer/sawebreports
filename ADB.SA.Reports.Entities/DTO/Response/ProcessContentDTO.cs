@@ -76,6 +76,7 @@ namespace ADB.SA.Reports.Entities.DTO
     public class AcronymItem
     {
         public string Acronym { get; set; }
+        public int ID { get; set; }
         public string Description { get; set; }
         //public int ID { get; set; }
     }

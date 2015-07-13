@@ -1,6 +1,6 @@
 ﻿//var app = angular.module('saApp', []);
 
-angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$routeParams', function ($scope, EntityService, $routeParams) {
+angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$routeParams', '$modal', '$log', function ($scope, EntityService, $routeParams, $modal, $log) {
     $scope.load = function () {
         EntityService.get({ recordId: $routeParams.recordId }, function (data) {
             $scope.data = data;
@@ -30,5 +30,44 @@ angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$ro
         return templateUrl;
     };
 
+    $scope.openAcronymModal = function (id) {
+        console.log(id);
+        var modalInstance = $modal.open({
+            templateUrl: 'test.html',
+            controller: 'ModalInstanceCtrl',
+            resolve: {
+                modalId: function () {
+                    return id;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (result) {
+            
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+
     $scope.load();
 }]);
+
+angular.module('saApp').controller('ModalInstanceCtrl', function ($scope, $modalInstance, modalId, DetailService) {
+
+        $scope.ok = function () {
+            $modalInstance.close('closed');
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+
+        $scope.load = function () {
+            console.log(modalId);
+            DetailService.get({ recordId: modalId }, function (data) {
+                $scope.data = data;
+            });
+        };
+        $scope.load();
+    });

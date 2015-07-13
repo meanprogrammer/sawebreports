@@ -6,7 +6,7 @@
                 &nbsp;
             </div>
             <div class="col-md-4" style="text-align:right;">
-                <button title="" data-placement="left" data-toggle="tooltip" class="btn btn-sm btn-default" type="button" data-original-title="To navigate to the related process and sub-process of this diagram, use the menu on the right. To navigate related informations, select the tabs above."><span class="glyphicon glyphicon-info-sign" style="font-size:18px;"></span></button>
+                <button title="" popover-placement="left" class="btn btn-sm btn-default" type="button" popover-trigger="mouseenter" popover="To navigate to the related process and sub-process of this diagram, use the menu on the right. To navigate related informations, select the tabs above."><span class="glyphicon glyphicon-info-sign" style="font-size:18px;"></span></button>
                 <div class="btn-group">
 
                     <button type="button" style="width:120px;" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -107,7 +107,7 @@
                 <th width="80%">Description</th>
             </tr>
             <tr ng-repeat="ac in data.Content.Acronyms">
-                <td><div ng-bind-html="ac.Acronym"></div></td>
+                <td><a ng-click="openAcronymModal(ac.ID)">{{ac.Acronym}}</a></td>
                 <td><div ng-bind-html="ac.Description"></div></td>
             </tr>
         </table>

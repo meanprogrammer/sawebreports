@@ -22,4 +22,11 @@ angular.module('saResourceService', ['ngResource'])
 					{}, {
 					    get: { method: 'GET', isArray: false }
 					});
+		}).factory(
+		'DetailService',
+		function ($resource) {
+		    return $resource('/api/Detail/Index/:recordId',
+					{}, {
+					    get: { method: 'GET', isArray: false }
+					});
 		});

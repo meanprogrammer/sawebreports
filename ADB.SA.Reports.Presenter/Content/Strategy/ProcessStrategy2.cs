@@ -203,8 +203,8 @@ namespace ADB.SA.Reports.Presenter.Content
                 {
                     AcronymItem ac = new AcronymItem();
                     related.ExtractProperties();
-
-                    ac.Acronym = related.RenderAsPopupLink();
+                    ac.ID = related.ID;
+                    ac.Acronym = related.Name; //related.RenderAsPopupLink();
                     ac.Description =
                         related.RenderHTML(
                         GlobalStringResource.AbbreviationDescription,

@@ -13,3 +13,29 @@
 <script type="text/ng-template" id="strategy2020.html">
     <div ng-include="'html/strategy2020.html'"></div>
 </script>
+<script type="text/ng-template" id="test.html">
+        <div class="modal-content" id="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-title">{{data.Title}}</h4>
+            </div>
+            <div id="detail-body" class="modal-body  modal-body-override">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td width="20%">Abbreviation Description</td>
+                        <td><div ng-bind-html="data.AbbreviationDescription"></div></td>
+                    </tr>
+                    <tr>
+                        <td width="20%">Description</td>
+                        <td><div ng-bind-html="data.Description"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Referenced Documents</td>
+                        <td><div ng-bind-html="data.ReferencedDocuments"></div></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="cancel()">Close</button>
+            </div>
+        </div>
+</script>
