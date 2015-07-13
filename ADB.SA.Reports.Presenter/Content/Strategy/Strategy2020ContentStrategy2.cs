@@ -9,11 +9,11 @@ using ADB.SA.Reports.Global;
 
 namespace ADB.SA.Reports.Presenter.Content
 {
-    public class Strategy2020ContentStrategy2 : MainContentStrategyBase
+    public class Strategy2020ContentStrategy : MainContentStrategyBase
     {
         Strategy2020Data data;
 
-        public Strategy2020ContentStrategy2()
+        public Strategy2020ContentStrategy()
         {
             data = new Strategy2020Data();
         }

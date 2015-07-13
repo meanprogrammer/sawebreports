@@ -15,11 +15,11 @@ using ADB.SA.Reports.Utilities.WMF;
 
 namespace ADB.SA.Reports.Presenter.Content
 {
-    public class ProcessStrategy2 : MainContentStrategyBase
+    public class ProcessStrategy : MainContentStrategyBase
     {
         private EntityData entityData;
 
-        public ProcessStrategy2()
+        public ProcessStrategy()
         {
             entityData = new EntityData();
         }

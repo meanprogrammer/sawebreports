@@ -35,7 +35,7 @@ namespace ADB.SA.Reports.Presenter
         {
             EntityDTO dto = data.GetOneEntity(id);
             dto.ExtractProperties();
-            ProcessStrategy2 st = new ProcessStrategy2();
+            ProcessStrategy st = new ProcessStrategy();
             PageResponseDTO response = new PageResponseDTO();
             response.BreadCrumbContent = BreadcrumbHelper.BuildBreadcrumbContent(dto);
             response.Header = dto.Name;

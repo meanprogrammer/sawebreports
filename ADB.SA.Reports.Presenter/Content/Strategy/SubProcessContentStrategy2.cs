@@ -13,12 +13,12 @@ using ADB.SA.Reports.Entities.Utils;
 
 namespace ADB.SA.Reports.Presenter.Content
 {
-    public class SubProcessContentStrategy2 : MainContentStrategyBase
+    public class SubProcessContentStrategy : MainContentStrategyBase
     {
 
         EntityData entityData = null;
 
-        public SubProcessContentStrategy2()
+        public SubProcessContentStrategy()
         {
             entityData = new EntityData();
         }

@@ -7,7 +7,7 @@ using ADB.SA.Reports.Global;
 
 namespace ADB.SA.Reports.Presenter.Content
 {
-    public class GenericContentStrategy2 : MainContentStrategyBase
+    public class GenericContentStrategy : MainContentStrategyBase
     {
 
         public override object BuildContent(EntityDTO dto)

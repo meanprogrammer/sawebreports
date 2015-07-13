@@ -97,10 +97,6 @@
     <Compile Include="Content\Strategy\Strategy2020ContentStrategy2.cs" />
     <Compile Include="Content\Strategy\MainContentStrategyBase.cs" />
     <Compile Include="Content\Strategy\ProcessStrategy2.cs" />
-    <Compile Include="Content\Strategy\Strategy2020ContentStrategy.cs" />
-    <Compile Include="Content\Strategy\GenericContentStrategy.cs" />
-    <Compile Include="Content\Strategy\ProcessStrategy.cs" />
-    <Compile Include="Content\Strategy\SubProcessContentStrategy.cs" />
     <Compile Include="Content\Strategy\SubProcessContentStrategy2.cs" />
     <Compile Include="Converter\Strategy2020DTOConverter.cs" />
     <Compile Include="HomePagePresenter.cs" />

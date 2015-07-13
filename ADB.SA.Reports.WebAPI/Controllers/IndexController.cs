@@ -20,7 +20,7 @@ namespace ADB.SA.Reports.WebAPI.Controllers
             EntityData data = new EntityData();
             EntityDTO dto = data.GetOneEntity(id);
             dto.ExtractProperties();
-            ProcessStrategy2 st = new ProcessStrategy2();
+            ProcessStrategy st = new ProcessStrategy();
             PageResponseDTO response = new PageResponseDTO();
             response.BreadCrumbContent = BreadcrumbHelper.BuildBreadcrumbContent(dto);
             response.Header = dto.Name;
