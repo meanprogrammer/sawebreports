@@ -1,1 +1,156 @@
 ﻿<h3>{{data.Header}}</h3>
+<tabset>
+    <tab heading="Diagram">
+        <div class="row">
+            <div class="col-md-8">
+                &nbsp;
+            </div>
+            <div class="col-md-4" style="text-align:right;">
+                <button title="" data-placement="left" data-toggle="tooltip" class="btn btn-sm btn-default" type="button" data-original-title="To navigate to the related process and sub-process of this diagram, use the menu on the right. To navigate related informations, select the tabs above."><span class="glyphicon glyphicon-info-sign" style="font-size:18px;"></span></button>
+                <div class="btn-group">
+
+                    <button type="button" style="width:120px;" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-tasks"></span>&nbsp; Process&nbsp; <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu quicklink-override navbar-right" role="menu">
+                        <li ng-repeat="rp in data.Content.Diagram.RelatedProcess"><a href="#/index/{{rp.ID}}">{{rp.Name}}</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" style="width:140px;" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-indent-left"></span>&nbsp; Sub-Process&nbsp; <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu quicklink-override" role="menu">
+                        <li ng-repeat="rps in data.Content.Diagram.RelatedSubProcess"><a href="#/index/{{rps.ID}}">{{rps.Name}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="diagram-containter">
+            <img src="/api/{{data.Content.Diagram.DiagramPath}}" class="center-block" />
+        </div>
+    </tab>
+    <tab heading="Process Desc.">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td width="15%">Process Name</td>
+                <td width="85%"><div ng-bind-html="data.Content.Description.ProcessName"></div></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><div ng-bind-html="data.Content.Description.Description"></div></td>
+            </tr>
+            <tr>
+                <td>Purpose</td>
+                <td><div ng-bind-html="data.Content.Description.Purpose"></div></td>
+            </tr>
+            <tr>
+                <td>Objective</td>
+                <td><div ng-bind-html="data.Content.Description.Objective"></div></td>
+            </tr>
+            <tr>
+                <td>Strategy</td>
+                <td><div ng-bind-html="data.Content.Description.Strategy"></div></td>
+            </tr>
+            <tr>
+                <td>Document Owner(s)</td>
+                <td><div ng-bind-html="data.Content.Description.DocumentOwners"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Process Relation" ng-if="data.Content.ProcessRelations.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="15%">Reference Number</th>
+                <th width="20%">Name</th>
+                <th width="65%">Relationship</th>
+            </tr>
+            <tr ng-repeat="pr in data.Content.ProcessRelations">
+                <td><div ng-bind-html="pr.ReferenceNumber"></div></td>
+                <td><div ng-bind-html="pr.Name"></div></td>
+                <td><div ng-bind-html="pr.Relationship"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Sub-Process Relation" ng-if="data.Content.SubProcessRelations.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="15%">Sub Process Diagram</th>
+                <th width="55%">Sub Process Overview</th>
+                <th width="15%">Sub Process Owner</th>
+                <th width="15%">Author(s)</th>
+            </tr>
+            <tr ng-repeat="spr in data.Content.SubProcessRelations">
+                <td><div ng-bind-html="spr.SubProcessDiagram"></div></td>
+                <td><div ng-bind-html="spr.SubProcessOverview"></div></td>
+                <td><div ng-bind-html="spr.SubProcessOwner"></div></td>
+                <td><div ng-bind-html="spr.Authors"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Business Rule Mapping" ng-if="data.Content.BusinessRuleMappings.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="20%">Section Name</th>
+                <th width="80%">Section Description</th>
+            </tr>
+            <tr ng-repeat="brm in data.Content.BusinessRuleMappings">
+                <td><div ng-bind-html="brm.SectionName"></div></td>
+                <td><div ng-bind-html="brm.SectionDescription"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Acronyms" ng-if="data.Content.Acronyms.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="20%">Acronym</th>
+                <th width="80%">Description</th>
+            </tr>
+            <tr ng-repeat="ac in data.Content.Acronyms">
+                <td><div ng-bind-html="ac.Acronym"></div></td>
+                <td><div ng-bind-html="ac.Description"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Application Relationship" ng-if="data.Content.Applications.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="40%">Application</th>
+                <th width="60%">Description</th>
+            </tr>
+            <tr ng-repeat="app in data.Content.Applications">
+                <td><div ng-bind-html="app.Application"></div></td>
+                <td><div ng-bind-html="app.Description"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Framework Ref." ng-if="data.Content.Frameworks.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="20%">Framework</th>
+                <th width="40%">Framework Index/ID</th>
+                <th width="40%">Description</th>
+            </tr>
+            <tr ng-repeat="fw in data.Content.Frameworks">
+                <td><div ng-bind-html="fw.Framework"></div></td>
+                <td><div ng-bind-html="fw.FrameworkID"></div></td>
+                <td><div ng-bind-html="fw.Description"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Internal Ref." ng-if="data.Content.InternalReferences.length > 0">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th width="20%">Document Type</th>
+                <th width="40%">Title</th>
+                <th width="40%">Document Reference Number</th>
+            </tr>
+            <tr ng-repeat="ir in data.Content.InternalReferences">
+                <td><div ng-bind-html="ir.DocumentType"></div></td>
+                <td><div ng-bind-html="ir.Title"></div></td>
+                <td><div ng-bind-html="ir.DocumentReferenceNumber"></div></td>
+            </tr>
+        </table>
+    </tab>
+    <tab heading="Comments"></tab>
+</tabset>

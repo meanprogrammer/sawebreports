@@ -12,14 +12,14 @@ namespace ADB.SA.Reports.Entities.Utils
         public static string RenderAsLink(this EntityDTO dto)
         {
             StringBuilder html = new StringBuilder();
-            html.Append(string.Format("<a class=\"obvious-link\" href=\"Default.aspx?id={0}\">{1}</a>", dto.ID, dto.Name));
+            html.Append(string.Format("<a href=\"#/index/{0}\">{1}</a>", dto.ID, dto.Name));
             return html.ToString();
         }
 
         public static string RenderAsLink(this EntityDTO dto, int id, string name, RenderOption option)
         {
             StringBuilder html = new StringBuilder();
-            html.Append(string.Format("<a class=\"obvious-link\" href=\"Default.aspx?id={0}\">{1}</a>", id, dto.RenderHTML(name, option)));
+            html.Append(string.Format("<a href=\"#/index/{0}\">{1}</a>", id, dto.RenderHTML(name, option)));
             return html.ToString();
         }
 
@@ -45,7 +45,7 @@ namespace ADB.SA.Reports.Entities.Utils
         public static string RenderAsLink(this EntityDTO dto, string label, int id, RenderOption option)
         {
             StringBuilder html = new StringBuilder();
-            html.Append(string.Format("<a class=\"obvious-link\" href='Default.aspx?id={0}'>{1}</a>", id, label));
+            html.Append(string.Format("<a href='#/index/{0}'>{1}</a>", id, label));
             return html.ToString();
         }
 
