@@ -104,33 +104,19 @@
     </tab>
     <tab heading="Business Rule Mapping" ng-if="data.Content.BusinessRuleMappings.length > 0">
         <table class="table table-bordered table-striped">
-                <tr>
-                    <th width="40%">Activity</th>
-                    <th width="10%">Paragraph Name</th>
-                    <th width="50%">Paragraph Reference</th>
-                </tr>
-
-            <tr ng-repeat="br in data.Content.BusinessRuleMappings" ng-if="data.Content.BusinessRuleMappings.Activity.Paragraphs.length == 1">
-                <td rowspan="{{Activity.RowSpan}}">{{{Activity.Activity}}}</td>
-                {{#each Activity.Paragraphs}}
-                <td>{{{ParagraphName}}}</td>
-                <td>{{{ParagraphReference}}}</td>
-                {{/each}}
+            <tr>
+                <th width="40%">Activity</th>
+                <th width="30%">Paragraph Name</th>
+                <th width="30%">Paragraph Reference</th>
             </tr>
-
-            <tr ng-repeat="br in data.Content.BusinessRuleMappings" ng-if="data.Content.BusinessRuleMappings.Activity.Paragraphs.length > 1">
-                {{#each Activity.Paragraphs}}
-                {{#indexiszero @index}}
-                <td rowspan="{{../../Activity.RowSpan}}">{{{../../Activity.Activity}}}</td>
-                {{/indexiszero}}
-                <td>{{{ParagraphName}}}</td>
-                <td>{{{ParagraphReference}}}</td>
+            <tr ng-repeat-start="br in data.Content.BusinessRuleMappings">
+                <td rowspan="{{br.Activity.RowSpan + 1}}"><div ng-bind-html="br.Activity.Activity"></div></td>
             </tr>
-                                <tr>
-                            {{/each}}
-                        </tr>
-
-            </table>
+            <tr ng-repeat-end ng-repeat="p in br.Activity.Paragraphs">
+                <td><div ng-bind-html="p.ParagraphName"></div></td>
+                <td><div ng-bind-html="p.ParagraphReference"></div></td>
+            </tr>
+        </table>
     </tab>
     <tab heading="Change History" ng-if="data.Content.ChangeHistories.length > 0">
         <table class="table table-bordered table-striped">
@@ -140,14 +126,12 @@
                 <th width="70%">Reason for Change</th>
                 <th width="15%">Author</th>
             </tr>
-            {{#each ChangeHistories}}
-            <tr>
-                <td>{{{Version}}}</td>
-                <td>{{{Date}}}</td>
-                <td>{{{Reason}}}</td>
-                <td>{{{Author}}}</td>
+            <tr ng-repeat="ch in data.Content.ChangeHistories">
+                <td><div ng-bind-html="ch.Version"></div></td>
+                <td><div ng-bind-html="ch.Date"></div></td>
+                <td><div ng-bind-html="ch.Reason"></div></td>
+                <td><div ng-bind-html="ch.Author"></div></td>
             </tr>
-            {{/each}}
         </table>
     </tab>
     <tab heading="Comments"></tab>
