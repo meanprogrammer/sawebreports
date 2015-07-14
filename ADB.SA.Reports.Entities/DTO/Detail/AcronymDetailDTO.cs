@@ -8,7 +8,7 @@ namespace ADB.SA.Reports.Entities.DTO
     public class AcronymDetailDTO :IDetailDTO
     {
         public string AbbreviationDescription { get; set; }
-        public string TemplateID { get { return "#acronym-content"; } }
+
         #region IDetailDTO Members
 
         public string Description

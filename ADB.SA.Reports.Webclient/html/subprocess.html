@@ -80,8 +80,12 @@
                 <th width="10%">Memo</th>
             </tr>
             <tr ng-repeat="ao in data.Content.ActivityOverviews">
-                <td><div ng-bind-html="ao.Activity"></div></td>
-                <td><div ng-bind-html="ao.User"></div></td>
+                <td><a ng-click="openActivityOverviewModal(ao.ID)">{{ao.Activity}}</a></td>
+                <td>
+                    <ul style="padding-left:5px;">
+                        <li ng-repeat="u in ao.User" style="list-style:none;" ><a ng-click="openActivityUserModal(u.UserID)">{{u.Name}}</a></li>
+                    </ul>
+                </td>
                 <td><div ng-bind-html="ao.Trigger"></div></td>
                 <td><div ng-bind-html="ao.Output"></div></td>
                 <td><div ng-bind-html="ao.keyDocs"></div></td>
@@ -110,7 +114,7 @@
                 <th width="30%">Paragraph Reference</th>
             </tr>
             <tr ng-repeat-start="br in data.Content.BusinessRuleMappings">
-                <td rowspan="{{br.Activity.RowSpan + 1}}"><div ng-bind-html="br.Activity.Activity"></div></td>
+                <td rowspan="{{br.Activity.RowSpan + 1}}"><a ng-click="openBrmActivityModal(br.Activity.ActivityID)">{{br.Activity.Activity}}</a></td>
             </tr>
             <tr ng-repeat-end ng-repeat="p in br.Activity.Paragraphs">
                 <td><div ng-bind-html="p.ParagraphName"></div></td>
@@ -130,7 +134,11 @@
                 <td><div ng-bind-html="ch.Version"></div></td>
                 <td><div ng-bind-html="ch.Date"></div></td>
                 <td><div ng-bind-html="ch.Reason"></div></td>
-                <td><div ng-bind-html="ch.Author"></div></td>
+                <td>
+                    <ul style="padding-left:5px;">
+                        <li ng-repeat="u in ch.Author" style="list-style:none;"><a ng-click="openHistoryUserModal(u.UserID)">{{u.Name}}</a></li>
+                    </ul>
+                </td>
             </tr>
         </table>
     </tab>

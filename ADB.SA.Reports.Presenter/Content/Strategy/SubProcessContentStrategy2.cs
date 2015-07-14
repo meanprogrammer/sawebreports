@@ -65,16 +65,15 @@ namespace ADB.SA.Reports.Presenter.Content
 
                     List<EntityDTO> users = entityData.GetRelatedPersons(related.ID);
 
-                    StringBuilder userLinks = new StringBuilder();
+                    List<ActivityOverviewUser> userLinks = new List<ActivityOverviewUser>();
                     if (users.Count > 0)
                     {
                         foreach (EntityDTO user in users)
                         {
-                            userLinks.Append(user.RenderAsPopupLink());
-                            userLinks.Append(GlobalStringResource.BreakTag);
+                            userLinks.Add(new ActivityOverviewUser() { UserID = user.ID, Name = user.Name });
                         }
                     }
-                    ch.Author = userLinks.ToString();
+                    ch.Author = userLinks;
                     items.Add(ch);
                 }
             }
@@ -202,13 +201,12 @@ namespace ADB.SA.Reports.Presenter.Content
                     activity.ExtractProperties();
 
                     List<EntityDTO> users = entityData.GetRelatedUsers(activity.ID);
-                    StringBuilder userLinks = new StringBuilder();
+                    List<ActivityOverviewUser> userLinks = new List<ActivityOverviewUser>();
                     if (users.Count > 0)
                     {
                         foreach (EntityDTO user in users)
                         {
-                            userLinks.Append(user.RenderAsPopupLink());
-                            userLinks.Append(GlobalStringResource.BreakTag);
+                            userLinks.Add(new ActivityOverviewUser() { UserID = user.ID, Name = user.Name });
                         }
                     }
 
@@ -219,8 +217,9 @@ namespace ADB.SA.Reports.Presenter.Content
                         isCtl = parent.IsCTL;
                     }
 
-                    ao.Activity = activity.RenderAsPopupLink(isCtl);
-                    ao.User = userLinks.ToString();
+                    ao.ID = activity.ID;
+                    ao.Activity = activity.Name;
+                    ao.User = userLinks;
                     ao.Trigger = activity.RenderHTML(GlobalStringResource.TriggerInput, RenderOption.Break);
                     ao.Output = activity.RenderHTML(GlobalStringResource.Output, RenderOption.Break);
                     ao.keyDocs = activity.RenderHTML(GlobalStringResource.KeyDocuments, RenderOption.Break);
@@ -253,14 +252,16 @@ namespace ADB.SA.Reports.Presenter.Content
                             
                             if (paragraphs.Count == 1)
                             {
-                                brm.Activity.Activity = section.RenderAsPopupLink();
+                                brm.Activity.Activity = section.Name;
+                                brm.Activity.ActivityID = section.ID;
                                 brm.Activity.RowSpan = paragraphs.Count;
                             }
                             else
                             {
                                 if (!renderedTitles.Contains(section.Name))
                                 {
-                                    brm.Activity.Activity = section.RenderAsPopupLink();
+                                    brm.Activity.Activity = section.Name;
+                                    brm.Activity.ActivityID = section.ID;
                                     brm.Activity.RowSpan = paragraphs.Count;
                                     renderedTitles.Add(section.Name);
                                 }

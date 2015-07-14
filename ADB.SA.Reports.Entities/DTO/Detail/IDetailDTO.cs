@@ -9,7 +9,7 @@ namespace ADB.SA.Reports.Entities.DTO
     {
         string Description { get; set; }
         string ReferencedDocuments { get; set; }
-        string TemplateID { get; }
+
         string Title { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<div>
-     <ng-include src="getTemplateUrl()"></ng-include>
+    <ng-include src="getTemplateUrl()"></ng-include>
 </div>
 <script type="text/ng-template" id="process.html">
     <div ng-include="'html/process.html'"></div>
@@ -13,29 +13,172 @@
 <script type="text/ng-template" id="strategy2020.html">
     <div ng-include="'html/strategy2020.html'"></div>
 </script>
-<script type="text/ng-template" id="test.html">
-        <div class="modal-content" id="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">{{data.Title}}</h4>
-            </div>
-            <div id="detail-body" class="modal-body  modal-body-override">
-                <table class="table table-bordered table-striped">
-                    <tr>
-                        <td width="20%">Abbreviation Description</td>
-                        <td><div ng-bind-html="data.AbbreviationDescription"></div></td>
-                    </tr>
-                    <tr>
-                        <td width="20%">Description</td>
-                        <td><div ng-bind-html="data.Description"></div></td>
-                    </tr>
-                    <tr>
-                        <td>Referenced Documents</td>
-                        <td><div ng-bind-html="data.ReferencedDocuments"></div></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="cancel()">Close</button>
-            </div>
+
+<script type="text/ng-template" id="acronymModal.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-title">{{data.Title}}</h4>
+    </div>
+    <div id="detail-body" class="modal-body  modal-body-override">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td width="20%">Abbreviation Description</td>
+                <td><div ng-bind-html="data.AbbreviationDescription"></div></td>
+            </tr>
+            <tr>
+                <td width="20%">Description</td>
+                <td><div ng-bind-html="data.Description"></div></td>
+            </tr>
+            <tr>
+                <td>Referenced Documents</td>
+                <td><div ng-bind-html="data.ReferencedDocuments"></div></td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="cancel()" class="btn btn-primary" type="button">Close</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="activityOverviewModal.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-title" ng-bind-html="data.Title"></h4>
+    </div>
+    <div id="detail-body" class="modal-body">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Subprocess Name</div>
+            <div ng-bind-html="data.RelatedSubprocess"></div>
         </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Details</div>
+            <table class="table table-bordered">
+                <tr>
+                    <td width="25%">User</td>
+                    <td><div ng-bind-html="data.User"></div></td>
+                </tr>
+                <tr>
+                    <td>Activity Nature</td>
+                    <td><div ng-bind-html="data.ActivityNature"></div></td>
+                </tr>
+                <tr>
+                    <td>Trigger/Input</td>
+                    <td><div ng-bind-html="data.TriggerInput"></div></td>
+                </tr>
+                <tr>
+                    <td>Output</td>
+                    <td><div ng-bind-html="data.Output"></div></td>
+                </tr>
+                <tr>
+                    <td>Activity Step Description</td>
+                    <td><div ng-bind-html="data.ActivityStepDescription"></div></td>
+                </tr>
+                <tr>
+                    <td>Activity Narrative</td>
+                    <td><div ng-bind-html="data.ActivityNarrative"></div></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Activity Variations</div>
+            <table class="table table-bordered">
+                <tr><td>Activity Variation</td><td>Description</td></tr>
+                <tr ng-repeat="av in data.ActivityVariations">
+                    <td><div ng-bind-html="av.ActivityVariation"></div></td>
+                    <td><div ng-bind-html="av.Description"></div></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Mappings</div>
+            <table class="table table-bordered">
+                <tr><td>Paragraph Name</td><td>Paragraph Reference</td></tr>
+                <tr ng-repeat="p in data.Paragraphs">
+                    <td><div ng-bind-html="p.ParagraphName"></div></td>
+                    <td><div ng-bind-html="p.ParagraphRef"></div></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Use Cases</div>
+            <table class="table table-bordered">
+                <tr><td>Use Case ID</td><td>Description</td></tr>
+                <tr ng-repeat="uc in data.UseCases">
+                    <td><div ng-bind-html="uc.UseCaseID"></div></td>
+                    <td><div ng-bind-html="uc.Description"></div></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Required Data</div>
+            <table class="table table-bordered">
+                <tr><td>Required Data</td><td>Description</td></tr>
+                <tr ng-repeat="rd in data.RequiredData">
+                    <td><div ng-bind-html="rd.RequiredData"></div></td>
+                    <td><div ng-bind-html="rd.Description"></div></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Sample References</div>
+            <table class="table table-bordered">
+                <tr><td>Required Data</td><td>Description</td><td>Reference Link</td></tr>
+                <tr ng-repeat="sr in data.SampleReferences">
+                    <td><div ng-bind-html="sr.SampleReference"></div></td>
+                    <td><div ng-bind-html="sr.Description"></div></td>
+                    <td><div ng-bind-html="sr.ReferenceLink"></div></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="cancel()">Close</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="activityUserModal.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="modal-title" ng-bind-html="data.Title"></h4>
+    </div>
+    <div id="detail-body" class="modal-body  modal-body-override">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td width="20%">Description</td>
+                <td><div ng-bind-html="data.Description"></div></td>
+            </tr>
+            <tr>
+                <td>Referenced Documents</td>
+                <td><div ng-bind-html="data.ReferencedDocuments"></div></td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="cancel()">Close</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="historyUserModal.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-title" ng-bind-html="data.Title"></h4>
+    </div>
+    <div id="detail-body" class="modal-body  modal-body-override">
+        <table class="table table-bordered">
+            <tr>
+                <td width="20%">Email</td>
+                <td><div ng-bind-html="data.Email"></div></td>
+            </tr>
+            <tr>
+                <td width="20%">Contact</td>
+                <td><div ng-bind-html="data.Contact"></div></td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="cancel()">Close</button>
+    </div>
 </script>

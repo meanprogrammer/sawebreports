@@ -26,7 +26,7 @@ namespace ADB.SA.Reports.Entities.DTO
         public string Version { get; set; }
         public string Date { get; set; }
         public string Reason { get; set; }
-        public string Author { get; set; }
+        public List<ActivityOverviewUser> Author { get; set; }
     }
 
     public class ModuleRelationshipItem
@@ -44,6 +44,7 @@ namespace ADB.SA.Reports.Entities.DTO
     public class BusinessRuleMappingActivity
     {
         public BusinessRuleMappingActivity() { Paragraphs = new List<BusinessRuleMappingParagraph>(); }
+        public int ActivityID { get; set; }
         public string Activity { get; set; }
         public int RowSpan { get; set; }
         public List<BusinessRuleMappingParagraph> Paragraphs { get; set; }
@@ -79,12 +80,19 @@ namespace ADB.SA.Reports.Entities.DTO
 
     public class ActivityOverviewItem
     {
+        public int ID { get; set; }
         public string Activity { get; set; }
-        public string User { get; set; }
+        public List<ActivityOverviewUser> User { get; set; }
         public string Trigger { get; set; }
         public string Output { get; set; }
         public string keyDocs { get; set; }
         public string SystemsInfo { get; set; }
         public string Memo { get; set; }
+    }
+
+    public class ActivityOverviewUser
+    {
+        public int UserID { get; set; }
+        public string Name { get; set; }
     }
 }
