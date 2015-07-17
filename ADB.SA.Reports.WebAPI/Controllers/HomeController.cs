@@ -114,15 +114,10 @@ namespace ADB.SA.Reports.WebAPI.Controllers
             if (ShowInformationBox())
             {
                 //adds the info box on the homepage
-                //html.AppendFormat("<div id=\"home-info-box\" class=\"infoBox asis-info\"><a onclick=\"SetCookie('hide_home_box','1','30');remove_element('home-info-box');\" class=\"home-close ui-icon ui-icon-closethick\">Close</a>{0}</div>", AppSettingsReader.GetValue("HOME_DESCRIPTION"));
                 home.HomeInformation = ADB.SA.Reports.Utilities.AppSettingsReader.GetValue("HOME_DESCRIPTION");
             }
-            //RenderOuterDivs(html, diagrams.LeftGroup, sectionList);
-            //RenderOuterDivs(html, diagrams.RightGroup, sectionList);
-            //html.AppendFormat(GlobalStringResource.Presenter_ReportId_HiddenField, id);
-            //CacheHelper.AddToCacheWithCheck("asiscontent", html.ToString());
+
             return Json(home, JsonRequestBehavior.AllowGet);
-            //return new JsonResult() { Data = home, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         private HomeDiagramContentDTO convertConfigValues(AsIsDiagramSection section)

@@ -30,6 +30,8 @@ angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$ro
         return templateUrl;
     };
 
+
+
     $scope.openAcronymModal = function (id) {
          var modalInstance = $modal.open({
             animation: true,
@@ -129,6 +131,11 @@ angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$ro
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
+
+    $scope.generateReport2 = function () {
+        console.log("generating reports");
+    };
+
     $scope.load();
 }]);
 

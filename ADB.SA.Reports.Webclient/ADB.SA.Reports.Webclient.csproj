@@ -68,6 +68,7 @@
     <Content Include="ctrls\impactanalysis.js" />
     <Content Include="ctrls\index.js" />
     <Content Include="ctrls\nav.js" />
+    <Content Include="ctrls\report.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="html\generic.html" />
     <Content Include="html\home.html" />
