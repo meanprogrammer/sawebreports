@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuickLinksData.cs" />
     <Compile Include="Strategy2020Data.cs" />
+    <Compile Include="SystemArchData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ADB.SA.Reports.Configuration\ADB.SA.Reports.Configuration.csproj">

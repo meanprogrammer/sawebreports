@@ -23,6 +23,9 @@ angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$ro
             case 145:
                 templateUrl = 'strategy2020.html'
                 break;
+            case 79:
+                templateUrl = 'sysarch.html';
+                break;
             default:
                 templateUrl = 'generic.html'
                 break;

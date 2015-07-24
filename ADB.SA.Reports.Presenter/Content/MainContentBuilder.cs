@@ -19,9 +19,9 @@ namespace ADB.SA.Reports.Presenter.Content
                 case 142:
                     context = new MainContentContext(new SubProcessContentStrategy());
                     break;
-                ////case 79:
-                ////    context = new ContentContext(new SystemArchitectureContentStrategy());
-                ////    break;
+                case 79:
+                    context = new MainContentContext(new SystemArchitectureContentStrategy());
+                    break;
                 case 145:
                     context = new MainContentContext(new Strategy2020ContentStrategy());
                     break;

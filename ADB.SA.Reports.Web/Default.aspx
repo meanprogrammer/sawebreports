@@ -52,6 +52,10 @@
                             var source = $('#st2020-content').html();
                             var template = Handlebars.compile(source);
                             content = template(obj.Content);
+                        } else if (obj.RenderType == "sysarch") {
+                            var source = $('#sysarch-content').html();
+                            var template = Handlebars.compile(source);
+                            content = template(obj.Content);
                         } else {
                             var source = $('#generic-content').html();
                             var template = Handlebars.compile(source);
@@ -194,6 +198,71 @@
               </table>
             </div>
             <!-- Diagram Description -->
+          <!-- Comments -->
+          <div class="tab-pane" id="comments" style="margin:0px 15px 0px 15px;">
+              <iframe src="CommentPage.aspx?id={{CurrentID}}" seamless="seamless"frameBorder="0" id="myif" style="width:100%;height:340px;">
+              </iframe>
+              <div id="comments-container">
+             </div>
+          </div>
+          <!-- Comments -->
+         </div>
+         <input id="reportId" type="hidden" value="{{CurrentID}}">
+    </script>
+    <script id="sysarch-content" type="text/x-handlebars-template">
+        <ul class="nav nav-tabs content-tab" id="content-tab">
+            <li><a href="#diagram" data-toggle="tab">Diagram</a></li>
+            <li><a href="#ddesc" data-toggle="tab">Diagram Desc.</a></li>
+            <li><a href="#adf" data-toggle="tab">Application Data Flow</a></li>
+            <li><a href="#comments" data-toggle="tab">Comments</a></li>
+        </ul>
+        <div class="tab-content top-margin-10">
+            <!-- Diagram -->
+            {{#if ShowResize}}
+            <div class="row">
+                <div class="col-md-3">
+                    <input id="newpercentage4" type="text" class="form-control input-sm show-inline" style="width:100px;" />
+                    <input id="gopercentage4" name="gopercentage4" class="btn btn-primary btn-sm" onclick="dochangepercent4();" type="button" value="Proceed" />
+                </div> 
+                <div class="col-md-9">
+                </div>
+            </div>
+            {{/if}}
+            <div class="tab-pane" id="diagram">
+                <div class="diagram-containter">
+                    <img src="{{Diagram.DiagramPath}}" class="center-block" />
+                </div>
+            </div>
+            <!-- Diagram -->
+            <!-- Diagram Description -->
+            <div class="tab-pane" id="ddesc">
+              <table class="table table-bordered table-striped">
+                  <tr>
+                      <td>{{{DiagramDescription}}}</td>
+                  </tr>
+              </table>
+            </div>
+            <!-- Diagram Description -->
+            <!-- Application Data Flow -->
+            <div class="tab-pane" id="adf">
+              <table class="table table-bordered table-striped">
+                  <tr>
+                      <th>Source Application</th>
+                      <th>Target Application</th>
+                      <th>Description</th>
+                      <th>Data Entities</th>
+                  </tr>
+                  {{#each AppDataFlow}}
+                    <tr>
+                        <td width="25%">{{{Source}}}</td>
+                        <td width="25%">{{{Destination}}}</td>
+                        <td width="35%">{{{Description}}}</td>
+                        <td width="15%">{{{DataEntities}}}</td>
+                    </tr>
+                  {{/each}}
+              </table>
+            </div>
+            <!-- Application Data Flow -->
           <!-- Comments -->
           <div class="tab-pane" id="comments" style="margin:0px 15px 0px 15px;">
               <iframe src="CommentPage.aspx?id={{CurrentID}}" seamless="seamless"frameBorder="0" id="myif" style="width:100%;height:340px;">

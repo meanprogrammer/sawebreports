@@ -51,6 +51,9 @@ namespace ADB.SA.Reports.Presenter
                 case 145:
                     response.RenderType = "st2020";
                     break;
+                case 79:
+                    response.RenderType = "sysarch";
+                    break;
                 default:
                     break;
             }

@@ -68,6 +68,7 @@
     <Compile Include="DTO\Detail\RoleDetailDTO.cs" />
     <Compile Include="DTO\Detail\SectionNameDetailDTO.cs" />
     <Compile Include="DTO\HomeDiagramContentDTO.cs" />
+    <Compile Include="DTO\Response\ApplicationDataFlowDTO.cs" />
     <Compile Include="DTO\Response\BreadCrumbItemDTO.cs" />
     <Compile Include="DTO\CommentAttachment.cs" />
     <Compile Include="DTO\CommentDTO.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="DTO\Response\ProcessContentDTO.cs" />
     <Compile Include="DTO\ProcessPageResponseDTO.cs" />
     <Compile Include="DTO\PropertiesDTO.cs" />
+    <Compile Include="DTO\Response\SystemArchitectureContentDTO.cs" />
     <Compile Include="DTO\SAMenuItemDTO.cs" />
     <Compile Include="DTO\SearchResultDTO.cs" />
     <Compile Include="DTO\StrategicAgendaReport.cs" />

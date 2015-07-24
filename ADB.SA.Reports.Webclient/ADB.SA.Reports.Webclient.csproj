@@ -77,6 +77,7 @@
     <Content Include="html\process.html" />
     <Content Include="html\strategy2020.html" />
     <Content Include="html\subprocess.html" />
+    <Content Include="html\sysarch.html" />
     <Content Include="Icon.png" />
     <Content Include="images\ADB-LOGO.jpg" />
     <Content Include="images\ADB_Logo.gif" />
