@@ -19,6 +19,9 @@ namespace ADB.SA.Reports.Utilities
                 case 142:
                     context = new PDFContext(new SubProcessPDFBuilderStrategy());
                     break;
+                case 79:
+                    context = new PDFContext(new SystemArchitecturePDFBuilderStrategy());
+                    break;
                 default:
                     context = new PDFContext(new GenericPDFBuilderStrategy());
                     break;

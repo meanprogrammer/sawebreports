@@ -78,6 +78,7 @@
     <Compile Include="PDF\PDFContext.cs" />
     <Compile Include="PDF\Strategy\ProcessPDFBuilderStrategy.cs" />
     <Compile Include="PDF\Strategy\SubProcessPDFBuilderStrategy.cs" />
+    <Compile Include="PDF\Strategy\SystemArchitecturePDFBuilderStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoundedCornersImageManager.cs" />
     <Compile Include="TypesReader.cs" />

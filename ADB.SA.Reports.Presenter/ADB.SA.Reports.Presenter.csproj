@@ -113,6 +113,7 @@
     <Compile Include="Report\Strategy\ProcessReportStrategy.cs" />
     <Compile Include="Report\Strategy\ReportStrategyBase.cs" />
     <Compile Include="Report\Strategy\SubProcessReportStrategy.cs" />
+    <Compile Include="Report\Strategy\SystemArchitectureReportStrategy.cs" />
     <Compile Include="ResizeWmfPresenter.cs" />
     <Compile Include="Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>

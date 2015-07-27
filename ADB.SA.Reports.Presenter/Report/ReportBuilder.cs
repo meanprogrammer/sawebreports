@@ -21,6 +21,9 @@ namespace ADB.SA.Reports.Presenter.Report
                 case 142:
                     context = new ReportContext(new SubProcessReportStrategy());
                     break;
+                case 79:
+                    context = new ReportContext(new SystemArchitectureReportStrategy());
+                    break;
                 default:
                     context = new ReportContext(new GenericReportStrategy());
                     break;
