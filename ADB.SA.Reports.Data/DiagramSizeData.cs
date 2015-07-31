@@ -15,7 +15,7 @@ namespace ADB.SA.Reports.Data
             db = DatabaseFactory.CreateDatabase("ExtendedDb");
         }
 
-        public bool SaveSize(int id, double percentage)
+        public bool SaveSize(int id, float percentage)
         {
             int result = 0;
             using (DbCommand cmd = db.GetSqlStringCommand(string.Format("UPDATE DiagramSize SET [Percentage]={0} WHERE [DiagramID]={1}", percentage, id)))

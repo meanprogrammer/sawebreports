@@ -6,7 +6,7 @@
                 <div ng-if="data.Content.ShowResize">
                     <input id="processpercentage" type="text" class="form-control input-sm show-inline" ng-model="data.Content.Diagram.Percentage" style="width:100px;" />
                     <input id="applyprocesspercentage" name="applyprocesspercentage" class="btn btn-primary btn-sm" type="button" value="Proceed" ng-click="applyDiagramSize()" />
-                    <input id="saveprocesspercent" name="saveprocesspercent" class="btn btn-primary btn-sm" type="button" value="Save" />
+                    <input id="saveprocesspercent" name="saveprocesspercent" class="btn btn-primary btn-sm" type="button" value="Save" ng-click="saveDiagramSize()" />
                 </div>
             </div>
             <div class="col-md-4" style="text-align:right;">

@@ -26,10 +26,19 @@ angular.module('saResourceService', ['ngResource'])
 
 		'DiagramResizeService',
 		function ($resource) {
-		    return $resource('/api/DiagramResize/Resize/:recordId/:percentage',
-					{}, {
-					    get: { method: 'POST', isArray: false }
-					});
+		    return {
+		        resize : $resource('/api/DiagramResize/Resize/:recordId/:percentage', {},
+                                {
+                                    post : {
+                                        method : 'POST'
+                                    }
+                                }),
+		        save : $resource('/api/DiagramResize/Save/:recordId/:percentage', {}, {
+		                        post : {
+		                            method : 'POST'
+		                        }
+		        }),
+		    }
 		}).factory(
 		'DetailService',
 		function ($resource) {

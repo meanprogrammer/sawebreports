@@ -35,14 +35,19 @@ angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$ro
     };
 
     $scope.applyDiagramSize = function () {
-        DiagramResizeService.get({ recordId: $scope.data.Content.CurrentID, percentage: $scope.data.Content.Diagram.Percentage }, function (data) {
-            console.log(data);
+        DiagramResizeService.resize.post({ recordId: $scope.data.Content.CurrentID, percentage: $scope.data.Content.Diagram.Percentage }, function (data) {
             $scope.data.Content.Diagram.DiagramPath = data.path + $scope.timeStamp();
         });
     };
 
     $scope.timeStamp = function () {
         return "?time="+ new Date().getTime();
+    }
+
+    $scope.saveDiagramSize = function () {
+        DiagramResizeService.save.post({ recordId: $scope.data.Content.CurrentID, percentage: $scope.data.Content.Diagram.Percentage }, function (data) {
+            console.log(data);
+        });
     }
 
     $scope.openAcronymModal = function (id) {

@@ -16,7 +16,9 @@ namespace ADB.SA.Reports.WebAPI.Controllers
     {
         public JsonResult Save(int recordId, float percentage)
         {
-            return null;
+            DiagramSizeData data = new DiagramSizeData();
+            bool result = data.SaveSize(recordId, percentage);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         [Route("api/diagramresize/{recordId}/{percentage}")]
