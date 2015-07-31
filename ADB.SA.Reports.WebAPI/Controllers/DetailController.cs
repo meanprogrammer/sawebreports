@@ -5,22 +5,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace ADB.SA.Reports.WebAPI.Controllers
 {
-    public class DetailController : Controller
+    public class DetailController : ApiController
     {
         //
         // GET: /Detail/
 
-        public JsonResult Index(int id)
+        public object Index(int id)
         {
             EntityData data = new EntityData();
             EntityDTO dto = data.GetOneEntity(id);
             dto.ExtractProperties();
             object detail = DetailBuilder2.BuildDetail(dto);
-            return Json(detail, JsonRequestBehavior.AllowGet);
+            return detail;
+            //return Json(detail, JsonRequestBehavior.AllowGet);
         }
 
     }

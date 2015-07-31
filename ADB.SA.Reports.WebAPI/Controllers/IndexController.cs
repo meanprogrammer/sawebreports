@@ -15,12 +15,12 @@ using System.Web.Mvc;
 
 namespace ADB.SA.Reports.WebAPI.Controllers
 {
-    public class IndexController : Controller
+    public class IndexController : ApiController
     {
         //
         // GET: /Index/
-        [System.Web.Http.HttpGet]
-        public JsonResult Index(int id)
+       // [System.Web.Http.HttpGet]
+        public HttpResponseMessage Get(int id)
         {
             EntityData data = new EntityData();
             EntityDTO dto = data.GetOneEntity(id);
@@ -47,12 +47,13 @@ namespace ADB.SA.Reports.WebAPI.Controllers
                 default:
                     break;
             }
-
-            return Json(response, JsonRequestBehavior.AllowGet);
+            HttpResponseMessage result = Request.CreateResponse(HttpStatusCode.Created, response);
+  
+            return result; //Json(response, JsonRequestBehavior.AllowGet);
         }
+        /*
 
-
-        public JsonResult Resize(int recordId, float percentage)
+        public HttpResponseMessage Resize(int recordId, float percentage)
         {
 
             EntityData data = new EntityData();
@@ -69,7 +70,10 @@ namespace ADB.SA.Reports.WebAPI.Controllers
             path = imageManager.ProcessImageWithPercentage(percentage);
             Dictionary<string, string> ss = new Dictionary<string, string>();
             ss.Add("path", path.Replace(@"\", @"/"));
-            return Json( ss  , "text/plain", Encoding.Unicode, JsonRequestBehavior.AllowGet);
-        }
+            //return Json( ss  , "text/plain", Encoding.Unicode, JsonRequestBehavior.AllowGet);
+
+            HttpResponseMessage result = Request.CreateResponse(HttpStatusCode.Created, path.Replace(@"\", @"/"));
+            return result;
+        }*/
     }
 }

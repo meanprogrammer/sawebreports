@@ -7,16 +7,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace ADB.SA.Reports.WebAPI.Controllers
 {
-    public class MenuController : Controller
+    public class MenuController : ApiController
     {
         //
         // GET: /Menu/
-        [HttpGet]
-        public JsonResult Index()
+        public List<SAMenuItemDTO> Get()
         {
             List<SAMenuItemDTO> arrangedMenuItems = new List<SAMenuItemDTO>();
             NavigationData data = new NavigationData();
@@ -58,12 +58,8 @@ namespace ADB.SA.Reports.WebAPI.Controllers
             }
 
            // var json = JsonConvert.SerializeObject(arrangedMenuItems);
-            return new JsonResult() { Data = arrangedMenuItems, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        }
-
-        public string GetTest() 
-        {
-            return "This is a test string!";
+            //return new JsonResult() { Data = arrangedMenuItems, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return arrangedMenuItems;
         }
 
     }

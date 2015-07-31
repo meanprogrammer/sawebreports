@@ -9,15 +9,15 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace ADB.SA.Reports.WebAPI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ApiController
     {
         EntityData data = new EntityData();
-        [HttpGet]
-        public JsonResult Index()
+        public HomePageContentDTO Get()
         {
             var id = WebConfigurationManager.AppSettings.Get("HOMEPAGE_ID");
             /*
@@ -117,7 +117,8 @@ namespace ADB.SA.Reports.WebAPI.Controllers
                 home.HomeInformation = ADB.SA.Reports.Utilities.AppSettingsReader.GetValue("HOME_DESCRIPTION");
             }
 
-            return Json(home, JsonRequestBehavior.AllowGet);
+            //return Json(home, JsonRequestBehavior.AllowGet);
+            return home;
         }
 
         private HomeDiagramContentDTO convertConfigValues(AsIsDiagramSection section)
