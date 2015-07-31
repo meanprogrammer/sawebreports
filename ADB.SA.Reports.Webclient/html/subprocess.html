@@ -2,6 +2,13 @@
 <tabset>
     <tab heading="Diagram">
         <div class="diagram-containter">
+            <div class="row" ng-if="data.Content.ShowResize">
+                <div class="col-md-12">
+                    <input id="processpercentage" type="text" class="form-control input-sm show-inline" ng-model="data.Content.Diagram.Percentage" style="width:100px;" />
+                    <input id="applyprocesspercentage" name="applyprocesspercentage" class="btn btn-primary btn-sm" type="button" value="Proceed" ng-click="applyDiagramSize()" />
+                    <input id="saveprocesspercent" name="saveprocesspercent" class="btn btn-primary btn-sm" type="button" value="Save" ng-click="saveDiagramSize()" />
+                </div>
+            </div>
             <img src="/api/{{data.Content.Diagram.DiagramPath}}" class="center-block" />
         </div>
     </tab>
