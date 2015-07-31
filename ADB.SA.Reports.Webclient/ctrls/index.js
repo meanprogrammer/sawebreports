@@ -1,6 +1,7 @@
 ﻿//var app = angular.module('saApp', []);
 
-angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$routeParams', '$modal', '$log', function ($scope, EntityService, $routeParams, $modal, $log) {
+angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$routeParams', '$modal', '$log', 'DiagramResizeService',
+    function ($scope, EntityService, $routeParams, $modal, $log, DiagramResizeService) {
     $scope.load = function () {
         EntityService.get({ recordId: $routeParams.recordId }, function (data) {
             $scope.data = data;
@@ -33,7 +34,16 @@ angular.module('saApp').controller('IndexCtrl', ['$scope', 'EntityService', '$ro
         return templateUrl;
     };
 
+    $scope.applyDiagramSize = function () {
+        DiagramResizeService.get({ recordId: $scope.data.Content.CurrentID, percentage: $scope.data.Content.Diagram.Percentage }, function (data) {
+            console.log(data);
+            $scope.data.Content.Diagram.DiagramPath = data.path + $scope.timeStamp();
+        });
+    };
 
+    $scope.timeStamp = function () {
+        return "?time="+ new Date().getTime();
+    }
 
     $scope.openAcronymModal = function (id) {
          var modalInstance = $modal.open({

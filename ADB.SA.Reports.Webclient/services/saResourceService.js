@@ -23,6 +23,13 @@ angular.module('saResourceService', ['ngResource'])
 					    get: { method: 'GET', isArray: false }
 					});
 		}).factory(
+		'DiagramResizeService',
+		function ($resource) {
+		    return $resource('/api/Index/Resize/:recordId/:percentage',
+					{}, {
+					    get: { method: 'POST', isArray: false }
+					});
+		}).factory(
 		'DetailService',
 		function ($resource) {
 		    return $resource('/api/Detail/Index/:recordId',

@@ -22,9 +22,7 @@ namespace ADB.SA.Reports.Presenter.Content
         {
             Strategy2020ContentDTO st2020 = new Strategy2020ContentDTO();
             int id = dto.ID;
-            st2020.Diagram = new DiagramContent() { 
-                DiagramPath = base.BuildDiagramContent(dto)
-            };
+            st2020.Diagram = BuildDiagramContent(dto);
             st2020.DiagramType = dto.Type;
             st2020.DiagramDescription = DiagramDescription(dto);
             st2020.Challenges = Challenges(id);

@@ -48,11 +48,12 @@ namespace ADB.SA.Reports.Presenter.Content
         {
             int id = entity.ID;
             ProcessContentDTO process = new ProcessContentDTO();
-            process.Diagram = new DiagramContent() { 
-                DiagramPath = BuildDiagramContent(entity),
-                RelatedProcess = GetRelatedProcess(entity),
-                RelatedSubProcess = GetRelatedSubProcess(entity)
-            };
+            DiagramContent dc = BuildDiagramContent(entity);
+            dc.RelatedProcess = GetRelatedProcess(entity);
+            dc.RelatedSubProcess = GetRelatedSubProcess(entity);
+
+            process.Diagram = dc;
+
             process.DiagramType = entity.Type;
             process.Description = ProcessDescription(entity);
             process.ProcessRelations = ProcessRelation(id);

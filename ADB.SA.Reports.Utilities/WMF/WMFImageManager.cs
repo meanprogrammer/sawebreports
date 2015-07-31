@@ -19,7 +19,7 @@ namespace ADB.SA.Reports.Utilities.WMF
         private int type;
         private int poolCount;
         private bool isReport;
-        private float newpercentage;
+        private double diagramPercentage;
 
         public WmfImageManager(EntityDTO dto)
         {
@@ -38,7 +38,7 @@ namespace ADB.SA.Reports.Utilities.WMF
         }
 
         public WmfImageManager(EntityDTO dto, byte[] data, string fileName,
-            int type, int poolCount, bool isReport, float newpercentage)
+            int type, int poolCount, bool isReport, double percentage)
         {
             this.dto = dto;
             this.data = data;
@@ -46,7 +46,7 @@ namespace ADB.SA.Reports.Utilities.WMF
             this.type = type;
             this.poolCount = poolCount;
             this.isReport = isReport;
-            this.newpercentage = newpercentage;
+            this.diagramPercentage = percentage;
         }
 
         public override string ProcessImage()
@@ -75,7 +75,7 @@ namespace ADB.SA.Reports.Utilities.WMF
             }
         }
 
-        public string SaveAndResizeImage(byte[] data, string fileName, 
+        public string SaveAndResizeImage(byte[] data, string fileName,
             int type, int poolCount, bool isReport)
         {
             if (data != null)
@@ -93,7 +93,7 @@ namespace ADB.SA.Reports.Utilities.WMF
         {
             File.WriteAllBytes(
                 PathResolver.MapPath(
-                    string.Format(@"Diagrams\wmf_temp\{0}", this.fileName)), 
+                    string.Format(@"Diagrams\wmf_temp\{0}", this.fileName)),
                     this.data
                 );
         }
@@ -103,14 +103,14 @@ namespace ADB.SA.Reports.Utilities.WMF
 
             Image imgToResize = Image.FromFile(
                     PathResolver.MapPath(
-                        string.Format(@"Diagrams\wmf_temp\{0}", this.fileName)) 
+                        string.Format(@"Diagrams\wmf_temp\{0}", this.fileName))
                                 );
 
-            float nPercent = 0;
+            double nPercent = 0;
             int sourceWidth = imgToResize.Width;
             int sourceHeight = imgToResize.Height;
 
-            ResizeStrategyParameter parameter = new ResizeStrategyParameter() 
+            ResizeStrategyParameter parameter = new ResizeStrategyParameter()
             {
                 Type = type,
                 Width = sourceWidth,
@@ -119,6 +119,7 @@ namespace ADB.SA.Reports.Utilities.WMF
                 IsReport = isReport,
             };
 
+            /*
             if (this.dto.DiagramPercentage <= 0 || this.dto.DiagramPercentage == 5.0f)
             {
                 nPercent = DiagramResizer.GetPercentage(parameter);
@@ -126,7 +127,8 @@ namespace ADB.SA.Reports.Utilities.WMF
             else
             {
                 nPercent = (float)this.dto.DiagramPercentage;
-            }
+            }*/
+            nPercent = this.diagramPercentage;
 
             int destWidth = (int)(sourceWidth * (nPercent * .01));
             int destHeight = (int)(sourceHeight * (nPercent * .01));
@@ -144,7 +146,7 @@ namespace ADB.SA.Reports.Utilities.WMF
 
             imageContainer.Dispose();
             imgToResize.Dispose();
-            
+
             string fileName = FileManager.GetFileName(this.fileName);
 
 
@@ -164,7 +166,7 @@ namespace ADB.SA.Reports.Utilities.WMF
             else
             {
                 savePath = string.Format(@"{0}\{1}",
-                    PathResolver.MapPath(GlobalStringResource.SlicedResizedFolder), 
+                    PathResolver.MapPath(GlobalStringResource.SlicedResizedFolder),
                     fileName);
             }
 

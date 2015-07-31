@@ -14,7 +14,7 @@ namespace ADB.SA.Reports.Data
         Database db;
         public CommentsData()
         {
-            db = DatabaseFactory.CreateDatabase("Comments");
+            db = DatabaseFactory.CreateDatabase("ExtendedDb");
         }
 
         public CommentDTO GetCommentByCommentID(int commentId)

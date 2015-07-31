@@ -65,6 +65,7 @@ namespace ADB.SA.Reports.Entities.DTO
         public string DiagramPath { get; set; }
         public List<EntityDTO> RelatedProcess { get; set; }
         public List<EntityDTO> RelatedSubProcess { get; set; }
+        public double Percentage { get; set; }
     }
 
     public class BusinessRuleMappingItem

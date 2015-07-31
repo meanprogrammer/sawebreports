@@ -27,9 +27,7 @@ namespace ADB.SA.Reports.Presenter.Content
         {
             int id = dto.ID;
             SubProcessContentDTO sp = new SubProcessContentDTO();
-            sp.Diagram = new DiagramContent() {
-                DiagramPath = BuildDiagramContent(dto)
-            };
+            sp.Diagram = BuildDiagramContent(dto);
             sp.DiagramType = dto.Type;
             sp.ProcessDescription = ParentProcessDescription(id);
             sp.SubProcessDescription = SubProcessDescription(dto);

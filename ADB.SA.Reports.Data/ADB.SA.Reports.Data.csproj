@@ -63,6 +63,7 @@
     <Compile Include="AsIsData.cs" />
     <Compile Include="CommentsData.cs" />
     <Compile Include="DataHelper.cs" />
+    <Compile Include="DiagramSizeData.cs" />
     <Compile Include="EndToEndSubProcessData.cs" />
     <Compile Include="EntityData.cs" />
     <Compile Include="FileData.cs" />

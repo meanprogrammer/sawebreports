@@ -19,10 +19,7 @@ namespace ADB.SA.Reports.Presenter.Content
         public override object BuildContent(EntityDTO dto)
         {
             SystemArchitectureContentDTO content = new SystemArchitectureContentDTO();
-            content.Diagram = new DiagramContent()
-            {
-                DiagramPath = BuildDiagramContent(dto)
-            };
+            content.Diagram = BuildDiagramContent(dto);
             content.DiagramDescription = DiagramDescription(dto);
             content.CurrentID = dto.ID;
             content.ShowResize = ShowResize();

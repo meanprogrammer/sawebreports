@@ -3,7 +3,11 @@
     <tab heading="Diagram">
         <div class="row">
             <div class="col-md-8">
-                &nbsp;
+                <div ng-if="data.Content.ShowResize">
+                    <input id="processpercentage" type="text" class="form-control input-sm show-inline" ng-model="data.Content.Diagram.Percentage" style="width:100px;" />
+                    <input id="applyprocesspercentage" name="applyprocesspercentage" class="btn btn-primary btn-sm" type="button" value="Proceed" ng-click="applyDiagramSize()" />
+                    <input id="saveprocesspercent" name="saveprocesspercent" class="btn btn-primary btn-sm" type="button" value="Save" />
+                </div>
             </div>
             <div class="col-md-4" style="text-align:right;">
                 <button title="" popover-placement="left" class="btn btn-sm btn-default" type="button" popover-trigger="mouseenter" popover="To navigate to the related process and sub-process of this diagram, use the menu on the right. To navigate related informations, select the tabs above."><span class="glyphicon glyphicon-info-sign" style="font-size:18px;"></span></button>

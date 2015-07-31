@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 
 namespace ADB.SA.Reports.Global
@@ -28,6 +29,14 @@ namespace ADB.SA.Reports.Global
             get
             {
                 return System.Web.HttpContext.Current.Response;
+            }
+        }
+
+        public static IPrincipal User
+        {
+            get
+            {
+                return System.Web.HttpContext.Current.User;
             }
         }
     }
