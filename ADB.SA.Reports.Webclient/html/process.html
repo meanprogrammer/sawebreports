@@ -4,9 +4,13 @@
         <div class="row">
             <div class="col-md-8">
                 <div ng-if="data.Content.ShowResize">
-                    <input id="processpercentage" type="text" class="form-control input-sm show-inline" ng-model="data.Content.Diagram.Percentage" style="width:100px;" />
-                    <input id="applyprocesspercentage" name="applyprocesspercentage" class="btn btn-primary btn-sm" type="button" value="Proceed" ng-click="applyDiagramSize()" />
-                    <input id="saveprocesspercent" name="saveprocesspercent" class="btn btn-primary btn-sm" type="button" value="Save" ng-click="saveDiagramSize()" />
+                    <div class="input-group" style="width: 250px">
+                        <input id="processpercentage" type="text" class="form-control input-sm show-inline" ng-model="data.Content.Diagram.Percentage" />
+                        <div class="input-group-btn">
+                            <input id="applyprocesspercentage" name="applyprocesspercentage" class="btn btn-primary btn-sm" type="button" value="Proceed" ng-click="applyDiagramSize()" />
+                            <input id="saveprocesspercent" name="saveprocesspercent" class="btn btn-primary btn-sm" type="button" value="Save" ng-click="saveDiagramSize()" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4" style="text-align:right;">
